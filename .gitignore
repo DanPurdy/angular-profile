@@ -1,0 +1,20 @@
+npm-debug.log
+engine/
+node_modules/
+platforms/
+plugins/
+build/
+bower_components/
+config.xml
+coverage
+# Logs
+logs
+*.log
+# Runtime data
+pids
+*.pid
+*.seed
+.DS_Store
+out
+dist/**/*
+test-reports/

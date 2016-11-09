@@ -1,0 +1,71 @@
+---
+  extends:
+    - airbnb
+    - angular
+  # ============================================================================
+  # Rules
+  # ============================================================================
+  rules:
+    func-names: 0
+    no-underscore-dangle: 0
+    import/no-extraneous-dependencies: 0
+    arrow-parens:
+      - 2
+      - as-needed
+      -
+        requireForBlockBody: false
+    valid-jsdoc:
+      - 1
+      -
+        requireParamDescription: true
+        requireReturnDescription: true
+        requireReturn: false
+        prefer:
+          return: "returns"
+        preferType:
+          String: "string"
+          Number: "number"
+          Boolean: "boolean"
+          Bool: "boolean"
+          array: "Array"
+          object: "Object"
+          function: "Function"
+    require-jsdoc:
+      - 1
+      -
+        require:
+          FunctionDeclaration: true
+          MethodDefinition: true
+          ClassDeclaration: true
+
+  # ============================================================================
+  # Angular Specific
+  # ============================================================================
+
+    angular/module-getter: 0 # buggy
+    angular/module-setter: 0 # buggy
+    angular/no-service-method: 0 # Service methods allow us to use es6 classes
+    angular/log: 1 # Console logs are still useful and are auto removed from build
+
+  # ============================================================================
+  # Environment
+  # ============================================================================
+  env:
+    browser: true
+    es6: true
+    mocha: true
+
+  # ============================================================================
+  # Parser
+  # ============================================================================
+  parser: 'babel-eslint'
+
+  # ============================================================================
+  # Globals
+  # ============================================================================
+
+  globals:
+    inject: false
+    sinon: false
+    expect: false
+    chai: false
