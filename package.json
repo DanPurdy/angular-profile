@@ -4,7 +4,8 @@
   "description": "Angular 1.5 Login/Profile Application",
   "main": "index.js",
   "scripts": {
-    "test": "karma start --single-run",
+    "pretest": "eslint .",
+    "test": "karma start --single-run ",
     "test:dev": "karma start",
     "lint": "node_modules/eslint/bin/eslint.js ./app/**/*.js",
     "lint-sass": "node_modules/sass-lint/bin/sass-lint.js --config .sass-lint.yml -q -v",
