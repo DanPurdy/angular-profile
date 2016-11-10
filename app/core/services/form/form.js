@@ -83,29 +83,6 @@ class FormService {
       form.$setPristine();
     });
   }
-
-  /**
-   * When a user registration form is saved we run it through our Form service to handle all
-   * successful and unsuccesful POST's
-   *
-   * @param {Object} model - A reference to the model handling this forms request
-   * @param {Object} item - The item we are trying to save (form data)
-   * @param {Object} self - A reference to 'this' from the model using this service
-   * @param {Object} form - The angular object of the form used to enter this data
-   * @returns {Object} A promise
-   */
-  register(model, item, self, form) {
-    return model.register(item).then(response => {
-      this.onSuccess(self);
-      return response;
-    }, response => {
-      this.onFailure(self, response);
-      return Promise.reject(response);
-    }).finally(() => {
-      self.isSubmitting = false; // eslint-disable-line no-param-reassign
-      form.$setPristine();
-    });
-  }
 }
 
 export default FormService;

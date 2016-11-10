@@ -4,8 +4,6 @@
 //
 // ==============================================================================
 
-import AuthenticationLoginController from './authentication.login.controller';
-
 import template from './authentication.login.html';
 
 /**
@@ -24,17 +22,29 @@ class AuthenticationLoginConfig {
   static initRoute($stateProvider) {
     'ngInject';
 
+    /* eslint-disable angular/controller-as-route */
     $stateProvider.state('authentication.login', {
-      url: '/login',
+      url: '',
+      abstract: true,
       template,
+    }).state('authentication.login.form', {
+      url: '/login',
+      template: `<ap-login-form-container
+          user="user"
+          logged-out="loggedOut"
+        ></ap-login-form-container>`,
       params: {
-        validated: false,
+        registeredUser: null,
         loggedOut: false,
-        reset: false,
       },
-      controller: AuthenticationLoginController,
-      controllerAs: 'apAuthLoginVm',
+      controller: ($stateParams, $scope) => {
+        'ngInject';
+
+        $scope.user = $stateParams.registeredUser; // eslint-disable-line no-param-reassign
+        $scope.loggedOut = $stateParams.loggedOut; // eslint-disable-line no-param-reassign
+      },
     });
+    /* eslint-enable angular/controller-as-route */
   }
 }
 

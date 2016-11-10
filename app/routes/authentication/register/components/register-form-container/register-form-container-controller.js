@@ -46,13 +46,18 @@ class ApRegisterFormContainerController {
     this.registration = registration;
     this.isSubmitting = true;
     this.result = null;
-    return this.FormService.register(this.UsersModel, this.registration, this, form)
-      .then(data => {
-        this.data = data;
-        // TODO add this completion route
-        // this.$state.go('authentication.register.complete', { id: data.id });
-      },
-    );
+
+    return this.UsersModel.register(registration)
+      .then(response => {
+        this.FormService.onSuccess(this);
+        this.user = response;
+        this.$state.go('authentication.login', { registeredUser: this.user });
+      }).catch(e => {
+        this.FormService.onFailure(this, e);
+        self.isSubmitting = false; // eslint-disable-line no-param-reassign
+        form.$setPristine();
+        console.error('user registration', e); // eslint-disable-line no-console,angular/log
+      });
   }
 }
 
