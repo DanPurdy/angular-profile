@@ -90,7 +90,7 @@ module.exports = {
       allChunks: true,
     }),
     new WebpackNotifierPlugin({
-      title: 'ALR-Dashboard: Build Status',
+      title: 'Angular-Profile: Build Status',
     }),
   ],
 };
