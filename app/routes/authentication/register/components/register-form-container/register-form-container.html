@@ -1,0 +1,13 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h1>Create a new account</h1>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <ap-user-register
+      result="apRegisterFormContainerVm.result"
+      on-register="apRegisterFormContainerVm.register(valid, form, registration)"
+      is-submitting="apRegisterFormContainerVm.isSubmitting">
+    </ap-user-register>
+  </div>
+</div>
