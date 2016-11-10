@@ -1,0 +1,15 @@
+// ==============================================================================
+//
+//  app/styles/_angular.scss
+//
+// ==============================================================================
+
+// Important angular override for ng-cloak to work
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+    display: none !important;
+}

@@ -1,0 +1,48 @@
+<form class="form"
+  method="post"
+  name="userDetailsForm"
+  role="form"
+  ng-submit="apUserDetailsFormVm.onSave({valid: userDetailsForm.$valid, form: userDetailsForm, user: apUserDetailsFormVm.user})"
+  novalidate>
+  <fieldset>
+    <legend>Personal information</legend>
+    <div class="row">
+      <div class="form-group form-group-lg required col-lg-4">
+        <label class="control-label" for="firstName">First name</label>
+        <input id="firstName"
+          class="form-control"
+          type="text"
+          name="firstName"
+          ng-model="apUserDetailsFormVm.user.address.first_name"
+          placeholder="John"
+          required>
+      </div>
+      <div class="form-group form-group-lg required col-lg-4">
+        <label class="control-label" for="lastName">Last name</label>
+        <input id="lastName"
+          class="form-control"
+          type="test"
+          name="lastName"
+          ng-model="apUserDetailsFormVm.user.address.last_name"
+          placeholder="Doe"
+          required>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group form-group-lg required col-lg-8">
+        <label class="control-label" for="companyName">Company name</label>
+        <input id="companyName"
+          class="form-control"
+          type="test"
+          name="companyName"
+          ng-model="apUserDetailsFormVm.user.company_name"
+          placeholder="Example Ltd."
+          required>
+      </div>
+    </div>
+  </fieldset>
+  <jp-ng-bs-animated-button class="btn-lg"
+    is-submitting="apUserDetailsFormVm.isSubmitting"
+    result="apUserDetailsFormVm.result"
+    options="apUserDetailsFormVm.buttonOpts"></jp-ng-bs-animated-button>
+</form>

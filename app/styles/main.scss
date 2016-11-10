@@ -1,0 +1,402 @@
+// ==============================================================================
+//
+//  app/styles/main.scss
+//
+// ==============================================================================
+
+@import './defaults/palettes';
+@import './functions/functions';
+@import './palettes';
+// Overwrite default styles
+@import './overwrites/angular';
+@import 'blocks';
+@import 'components';
+@import 'routes';
+
+body,
+html {
+  height: 100%;
+  font-size: 16px;
+  min-width: 320px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: palette(ap, ap-grey, xxx-light);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Times', 'Times New Roman', serif;
+  color: palette(ap, ap-blue);
+
+  .account--admin & {
+    color: palette(ap, ap-grey);
+  }
+}
+
+a {
+  color: palette(ap, ap-blue);
+
+  .account--admin & {
+    color: palette(ap, ap-grey);
+  }
+
+  &:focus,
+  &:hover {
+    color: palette(ap, ap-blue, dark);
+
+    .account--admin & {
+      color: palette(ap, ap-grey, mid-dark);
+    }
+  }
+}
+
+legend {
+  font-family: 'Times', 'Times New Roman', serif;
+  color: palette(ap, ap-blue);
+  font-size: 1.875rem;
+
+  .account--admin & {
+    color: palette(ap, ap-grey);
+  }
+}
+
+dt {
+  font-size: 0.9rem;
+}
+
+dd {
+  border-bottom: 1px solid palette(ap, ap-grey, xx-light);
+  padding-bottom: 0.5rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+fieldset {
+  margin-bottom: 1rem;
+}
+
+.account {
+  display: flex;
+  min-height: calc(100% - 122px);
+
+  &__sidebar {
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-bottom: 20px;
+  }
+
+  &__content {
+    flex: 1;
+  }
+}
+
+// =============================================================================
+//  Bootstrap
+// =============================================================================
+//  Bootstrap - Panel
+// =============================================================================
+
+.panel {
+  border: 1px solid palette(ap, ap-grey, xx-light);
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.panel-heading {
+  padding: 1rem 1.5rem;
+
+  h1,
+  h2 {
+    display: inline-block;
+    border-top: 2px solid palette(ap, ap-blue);
+    padding-top: 0.75rem;
+
+    .account--admin & {
+      border-top-color: palette(ap, ap-grey);
+    }
+  }
+
+  p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    line-height: 1.5;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    color: palette(ap, ap-blue);
+
+    .account--admin & {
+      color: palette(ap, ap-grey);
+    }
+  }
+
+  + .panel-body {
+    padding-top: 0;
+  }
+}
+
+.panel-body {
+  padding: 1.5rem;
+
+  > p {
+    font-size: 1.25rem;
+
+    &.warning {
+      background-color: palette(ap, ap-blue, x-light);
+      color: palette(ap, ap-blue);
+      padding: 1rem;
+      border-radius: 3px;
+      border: 1px solid palette(ap, ap-grey, xx-light);
+
+      > span {
+        margin-right: 0.5rem;
+      }
+    }
+  }
+}
+
+.infomation {
+  background-color: palette(ap, ap-blue, x-light);
+  color: palette(ap, ap-blue);
+  padding: 1rem;
+  border-radius: 3px;
+  border: 1px solid palette(ap, ap-grey, xx-light);
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+
+  > span {
+    margin-right: 0.5rem;
+  }
+}
+// =============================================================================
+//  Bootstrap - Table
+// =============================================================================
+
+.table-bordered {
+  color: palette(ap, ap-grey, xx-light);
+}
+
+.table {
+  td > a {
+    cursor: pointer;
+  }
+}
+
+.table > thead > tr > th {
+  background-color: palette(ap, ap-blue);
+  color: palette(ap, ap-white);
+  font-weight: normal;
+  padding: 0.75rem 0.5rem;
+
+  .account--admin & {
+    background-color: palette(ap, ap-grey);
+  }
+
+  &:first-of-type {
+    border-radius: 3px 0 0;
+  }
+
+  &:last-of-type {
+    border-radius: 0 3px 0 0;
+  }
+}
+
+// =============================================================================
+//  Bootstrap - Button
+// =============================================================================
+
+.btn {
+  font-size: 1rem;
+  border-radius: 3px;
+  transition: background-color 0.5s, border-color 0.5s, color 0.5s;
+}
+
+.btn-default {
+  background-color: palette(ap, ap-blue);
+  border-color: palette(ap, ap-blue);
+  box-shadow: 0 2px 0 0 palette(ap, ap-blue, dark);
+  color: palette(ap, ap-white);
+
+  .account--admin & {
+    background-color: palette(ap, ap-grey);
+    border-color: palette(ap, ap-grey);
+    box-shadow: 0 2px 0 0 palette(ap, ap-grey, mid-dark);
+    color: palette(ap, ap-white);
+  }
+
+  &:active,
+  &:focus,
+  &:hover,
+  &:visited {
+    background-color: palette(ap, ap-blue, dark);
+    border-color: palette(ap, ap-blue, dark);
+    box-shadow: 0 2px 0 0 palette(ap, ap-blue, dark);
+    color: palette(ap, ap-white);
+
+    .account--admin & {
+      background-color: palette(ap, ap-grey, mid-dark);
+      border-color: palette(ap, ap-grey, mid-dark);
+      box-shadow: 0 2px 0 0 palette(ap, ap-grey, mid-dark);
+      color: palette(ap, ap-white);
+    }
+  }
+
+  &:active {
+    &:focus,
+    &:hover {
+      background-color: palette(ap, ap-blue, dark);
+      border-color: palette(ap, ap-blue, dark);
+      color: palette(ap, ap-white);
+      box-shadow: 0 2px 0 0 palette(ap, ap-blue, dark);
+
+      .account--admin & {
+        background-color: palette(ap, ap-grey, mid-dark);
+        border-color: palette(ap, ap-grey, mid-dark);
+        box-shadow: 0 2px 0 0 palette(ap, ap-grey, mid-dark);
+        color: palette(ap, ap-white);
+      }
+    }
+  }
+
+  &.active {
+    color: palette(ap, ap-blue);
+    background-color: palette(ap, ap-blue, x-light);
+    border: 1px solid palette(ap, ap-grey, x-light);
+    box-shadow: 0 2px 0 0 palette(ap, ap-grey, x-light);
+  }
+}
+
+.btn-primary {
+  background-color: palette(ap, ap-orange);
+  border-color: palette(ap, ap-orange);
+  box-shadow: 0 2px 0 0 palette(ap, ap-orange, dark);
+  color: palette(ap, ap-white);
+
+  &:focus,
+  &:hover {
+    background-color: palette(ap, ap-orange, dark);
+    border-color: palette(ap, ap-orange, dark);
+    box-shadow: 0 2px 0 0 palette(ap, ap-orange, dark);
+    color: palette(ap, ap-white);
+  }
+
+  &:active {
+    &:focus,
+    &:hover {
+      background-color: palette(ap, ap-orange);
+      border-color: palette(ap, ap-orange);
+      box-shadow: 0 2px 0 0 palette(ap, ap-orange, dark);
+      color: palette(ap, ap-white);
+    }
+  }
+
+  &[disabled] {
+    &:focus,
+    &:hover {
+      background-color: lighten(palette(ap, ap-orange, dark), 20%);
+      border-color: lighten(palette(ap, ap-orange, dark), 20%);
+      color: palette(ap, ap-white);
+    }
+  }
+}
+
+.btn-danger {
+  background-color: palette(ap, ap-red);
+  border-color: palette(ap, ap-red);
+  box-shadow: 0 2px 0 0 palette(ap, ap-red, dark);
+  color: palette(ap, ap-white);
+
+  &:focus,
+  &:hover {
+    background-color: palette(ap, ap-red, dark);
+    border-color: palette(ap, ap-red, dark);
+    color: palette(ap, ap-white);
+  }
+}
+
+.btn-no-shadow {
+  box-shadow: none;
+}
+
+// =============================================================================
+//  Bootstrap - Tabs
+// =============================================================================
+
+.nav {
+  > li {
+    > a {
+      &:focus,
+      &:hover {
+        background-color: transparent;
+      }
+    }
+  }
+}
+
+.nav-tabs {
+  font-size: 1rem;
+  border-bottom: 1px solid palette(ap, ap-grey, xx-light);
+
+  > li {
+    &:first-of-type {
+      margin-left: 1.5rem;
+    }
+
+    > a {
+      padding-left: 0;
+      padding-right: 0;
+      margin-right: 2rem;
+      border-radius: 3px 3px 0 0;
+      border-width: 0 0 5px;
+
+      &:hover {
+        border-color: transparent transparent palette(ap, ap-blue, light);
+        border-width: 0 0 5px;
+      }
+    }
+
+    &.active {
+      > a {
+        color: palette(ap, ap-blue);
+        font-weight: bold;
+        border-color: transparent transparent palette(ap, ap-blue);
+        border-width: 0 0 5px;
+
+        &:active,
+        &:focus,
+        &:hover {
+          color: palette(ap, ap-blue);
+          border-color: transparent transparent palette(ap, ap-blue);
+          border-width: 0 0 5px;
+        }
+      }
+    }
+  }
+}
+
+// =============================================================================
+//  Bootstrap - Forms
+// =============================================================================
+
+.form,
+.form-horizontal {
+  .bg-danger {
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: 3px;
+    margin-top: 10px;
+    border: 1px solid palette(ap, ap-red);
+    color: palette(ap, ap-red, dark);
+
+    &::before {
+      font-family: FontAwesome;
+      content: '\f071';
+      margin-left: -1rem;
+      margin-right: 0.5rem;
+    }
+  }
+}

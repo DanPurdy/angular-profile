@@ -1,0 +1,249 @@
+//==============================================================================
+//  Functions
+//
+// Based on the Front End Framework EchoBase by Dan Purdy and Ben Griffith
+// https://github.com/loftdigital/echo-base
+//
+//==============================================================================
+
+//==============================================================================
+//  1. Setup palettes
+//==============================================================================
+
+/// This function will check to see if custom palettes have been specified
+/// within the $custom-palettes map within the _settings.scss file.
+///
+/// If custom palettes have been specified then this function will return a new
+/// map which comprises the contents of $default-palettes and $custom-palettes.
+///
+/// If no custom palettes are specified only the default palette map will be
+/// returned.
+///
+/// @access private
+/// @group Palettes
+/// @return {Map}
+
+@function setup-palettes() {
+  // Create an empty map holder
+  $palettes: ();
+
+  // Include if custom palettes are in use
+  @if (length($custom-palettes) > 0) {
+    $palettes: map-merge($default-palettes, $custom-palettes);
+  } @else {
+    $palettes: $default-palettes;
+  }
+
+  // Include third-party palette if enabled
+  @if ($use-third-party-palette) {
+    $palettes: map-merge($palettes, $third-party-palettes);
+  }
+
+  @return $palettes;
+}
+
+
+
+//  2. Get palette
+//==============================================================================
+
+/// Retrieves a single color or a color map from the global palette map
+///
+/// @access private
+/// @group Palettes
+/// @param {number} $iterator - Used to loop through the keys parameter
+/// @param {object} $type - Can be a map or color
+/// @param {map} $map - The map that we're searching
+/// @param {list} $keys... - A list of a varying length containing the keys used
+/// to get the desired color or map
+/// @return {color}
+
+@function get-palette($iterator, $type, $map, $keys...) {
+  $i: $iterator;
+  $key: nth($keys, $i);
+
+  // Check if the passed nth key exists in the map
+  @if (map-has-key($map, $key)) {
+    $value: map-get($map, $key);
+
+    // Check if value is map and if there are any more keys to utilise
+    @if ((type-of($value) == map) and ($i < length($keys))) {
+      // Increase iterator by 1 so that we get a new key value to play
+      // with then re-run this function
+      $i: $i + 1;
+      @return get-palette($i, $type, $value, $keys...);
+    }
+
+    // Once we're iterated through all the $keys list values and have stored
+    // the required value, lets check that it is of the desired type
+    @return get-palette-of-type($value, $type);
+  } @else {
+    @warn $key + ' doesn\'t exist in your palettes.';
+  }
+}
+
+
+
+//  2. Get palette of defined type
+//==============================================================================
+
+/// Checks and returns either the desired palette type or returns a type
+/// missmatch error
+///
+/// @access private
+/// @group Palettes
+/// @param {map} $item -  A specific key to be used to get the desired color or
+/// map
+/// @param {object} $type - Can be a map or color
+/// @return {color}
+
+@function get-palette-of-type($item, $type) {
+  @if (type-of($item) == $type) {
+    @return $item;
+  } @else {
+    @if ($global-palette-base-fallback) {
+      @return base-fallback($item, $type);
+    } @else {
+      @warn 'Wrong object type returned from palettes. Expecting ' + $type + ', got ' + type-of($item) + '!';
+      @return null;
+    }
+  }
+}
+
+
+//  3. Base fallback - defaults to base if enabled
+//==============================================================================
+
+/// If the user is after the base color from a tone map of a color, it is not
+/// required to pass the value base
+///
+/// @access private
+/// @group Palettes
+/// @param {map} $item - A specific key to be used to get the desired color or
+/// map
+/// @param {object} $type - Can be a map or color
+/// @return {color}
+
+@function base-fallback($item, $type) {
+  @if ((type-of($item) == map) and ($type == color)) {
+    @return map-get($item, 'base');
+  }
+
+  @warn 'Wrong object type returned from palettes. Expecting ' + $type + ', got ' + type-of($item) + '!';
+}
+
+
+
+//  4. Get color from palette
+//==============================================================================
+
+/// Retrieves a color from the global palette map
+///
+/// @access public
+/// @group Palettes
+/// @param {list} $items... - A list of a varying length containing the keys
+/// used to get the desired color or map
+/// @return {color} a color value
+///
+/// @example scss - Our custom palette map setup in _settings.scss
+///
+/// primary-colors: (
+///   red: (
+///     light: rgb(255, 200, 200),
+///     base: rgb(255, 100, 100),
+///     dark: rgb(100, 0, 0)
+///   ),
+///   blue: (
+///     light: rgb(200, 200, 255),
+///     base: rgb(100, 100, 255),
+///     dark: rgb(0, 0, 100)
+///   )
+/// );
+///
+/// @example scss - Get the specific tone of a color
+/// // Usage - SCSS
+///
+/// .block {
+///   color: palette(primary-colors, red, light);
+/// }
+///
+/// // Output - CSS
+///
+/// .block {
+///   color: rgb(255, 200, 200);
+/// }
+///
+/// @example scss - Get the base tone of a color (base fallback enabled)
+///
+/// // Usage - SCSS
+///
+/// .block {
+///   color: palette(primary-colors, blue);
+/// }
+///
+/// // Output - CSS
+///
+/// .block {
+///   color: rgb(100, 100, 255);
+/// }
+
+@function palette($items...) {
+  $palettes: setup-palettes();
+  $result: get-palette(1, color, $palettes, $items...);
+
+  @return $result;
+}
+
+
+
+//  5. Get map from palette
+//==============================================================================
+
+/// Retrieves a map from the global palette map, this can be useful for iterating
+/// over colour maps.
+///
+/// @access public
+/// @group Palettes
+/// @param {list} $items...
+/// @return {map} A palette map
+///
+/// @example scss - Our custom palette map setup in _settings.scss
+///
+/// primary-colors: (
+///   red: (
+///     light: rgb(255, 200, 200),
+///     base: rgb(255, 100, 100),
+///     dark: rgb(100, 0, 0)
+///   )
+/// );
+///
+/// @example scss - using a palette map to create a modifier class for each palette tone
+/// // Usage - SCSS
+///
+/// .test-class {
+///     @each $tone, $colval in palette-map(primary-colors, red) {
+///         &--#{$tone} {
+///             background-color: $colval;
+///         }
+///     }
+/// }
+///
+/// // output - CSS
+/// .test-class--light {
+///     background-color: #ffc8c8;
+/// }
+///
+/// .test-class--base {
+///     background-color: #ff6464;
+/// }
+///
+/// .test-class--dark {
+///     background-color: #640000;
+/// }
+
+@function palette-map($items...) {
+  $palettes: setup-palettes();
+  $result: get-palette(1, map, $palettes, $items...);
+
+  @return $result;
+}
