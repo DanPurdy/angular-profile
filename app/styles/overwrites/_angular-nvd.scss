@@ -1,0 +1,17 @@
+// ==============================================================================
+//
+//  app/styles/overwrites/_angular-nvd.scss
+//
+// ==============================================================================
+
+.nv-point {
+  stroke-opacity: 1 !important;
+  stroke-width: 5px !important;
+  fill-opacity: 1 !important;
+}
+
+svg {
+  .nv-controlsWrap {
+    display: none;
+  }
+}

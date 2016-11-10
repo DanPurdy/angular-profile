@@ -1,0 +1,20 @@
+// ==============================================================================
+//
+//  app/routes/authentication/_authentication.scss
+//
+//
+//
+// ==============================================================================
+
+.authentication {
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+  height: calc(100vh - 120px);
+
+  &__container {
+    width: 60%;
+    max-width: 1024px;
+    padding: 2rem 0;
+  }
+}

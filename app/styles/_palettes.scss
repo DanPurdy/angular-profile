@@ -1,0 +1,59 @@
+// ==============================================================================
+//
+//  app/styles/_palettes.scss
+//
+//
+//
+// ==============================================================================
+
+$global-palette-base-fallback: true;
+
+$custom-palettes: (
+  alr: (
+    alr-blue: (
+      x-light: rgb(240, 243, 246),
+      light: rgb(144, 165, 187),
+      mid-light: rgb(88, 122, 152),
+      base: rgb(1, 51, 102),
+      dark: rgb(11, 25, 41),
+    ),
+    alr-orange: (
+      base: rgb(218, 125, 0),
+      dark: rgb(191, 108, 0),
+      x-dark: rgb(125, 73, 5),
+    ),
+    alr-green: (
+      base: rgb(169, 176, 36),
+      dark: rgb(103, 106, 55),
+    ),
+    alr-grey: (
+      xxx-light: rgb(240, 240, 240),
+      xx-light: rgb(222, 222, 222),
+      x-light: rgb(200, 200, 200),
+      light: rgb(68, 68, 68),
+      mid-light: rgb(50, 50, 50),
+      base: rgb(38, 38, 38),
+      mid-dark: rgb(25, 25, 25),
+      dark: rgb(17, 17, 17),
+    ),
+    alr-white: (
+      base: rgb(255, 255, 255),
+    ),
+    alr-black: (
+      base: rgb(0, 0, 0),
+    ),
+    alr-red: (
+      light: rgb(242, 222, 222),
+      base: rgb(217, 52, 15),
+      dark: rgb(173, 43, 14),
+    ),
+  ),
+  typography: (
+    text: (
+      dark: rgb(50, 66, 81),
+      base: rgb(72, 90, 106),
+      light: rgb(99, 114, 128),
+      x-light: rgb(135, 146, 156)
+    )
+  )
+);

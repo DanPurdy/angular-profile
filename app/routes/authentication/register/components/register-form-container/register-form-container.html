@@ -1,0 +1,20 @@
+<div class="panel">
+  <div class="panel-heading">
+    <h1>Create a new account</h1>
+    <p class="italic">
+      Search our database to discover whether an item has been registered as
+      stolen, missing, subject to a dispute, or reported with authenticity issues.
+      Report the theft or loss of an artwork or valuable item to the Art Loss
+      Register for registration on the database.
+    </p>
+    <hr>
+  </div>
+  <div class="panel-body">
+    <ap-user-register
+      button-opts="alrRegisterFormContainerVm.buttonOpts"
+      result="alrRegisterFormContainerVm.result"
+      on-register="alrRegisterFormContainerVm.register(valid, form, registration)"
+      is-submitting="alrRegisterFormContainerVm.isSubmitting">
+    </ap-user-register>
+  </div>
+</div>

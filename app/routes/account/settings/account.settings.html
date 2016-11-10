@@ -1,0 +1,22 @@
+<main class="panel">
+  <div class="panel-heading">
+    <h1>Settings</h1>
+  </div>
+  <div class="panel-body" ng-if="userId">
+    <p class="warning">
+      <span class="fa fa-user"></span>
+      <!-- TODO: Figure out what to do with this -->
+      You're editing a child account, if you wish to edit your own details please click
+      <a class="" ng-href="/account/settings" ui-sref="artLoss.account.settings"><strong>here</strong></a>
+    </p>
+  </div>
+  <div class="panel-body">
+    <p class="warning">
+      <span class="fa fa-warning"></span>
+      <!-- TODO: Improve the flow of this notice text -->
+      Please keep your address, contact details and other details <strong>up to date</strong>,
+      so we can get in touch with you if we need to.
+    </p>
+  </div>
+  <settings-container user-id="userId"></settings-container>
+</main>

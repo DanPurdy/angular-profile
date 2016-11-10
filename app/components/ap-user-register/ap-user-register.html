@@ -1,0 +1,282 @@
+<form class="form"
+  method="post"
+  name="userRegForm"
+  role="form"
+  ng-submit="apUserRegisterVm.onRegister({valid: userRegForm.$valid, form: userRegForm, registration: apUserRegisterVm.registration})"
+  novalidate>
+    <fieldset>
+      <legend>Personal information</legend>
+      <div class="row">
+        <div class="form-group form-group-lg col-lg-2">
+          <label class="control-label" for="title">Title</label>
+          <select id="title"
+            class="form-control"
+            name="title"
+            ng-model="apUserRegisterVm.registration.address.title"
+            ng-options="item for item in apUserRegisterVm.options"
+            required>
+              <option value="" disabled selected>-- Select your title --</option>
+          </select>
+          <div ng-messages="userRegForm.title.$error">
+            <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.title.$dirty">You must select a Title</div>
+          </div>
+        </div>
+        <div class="form-group form-group-lg col-lg-5">
+          <label class="control-label" for="firstName">First name</label>
+          <input id="firstName"
+            class="form-control"
+            type="text"
+            name="firstName"
+            ng-model="apUserRegisterVm.registration.address.first_name"
+            placeholder="John"
+            required>
+            <div ng-messages="userRegForm.firstName.$error">
+              <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.firstName.$dirty">You must choose a first name</div>
+            </div>
+        </div>
+        <div class="form-group form-group-lg col-lg-5">
+          <label class="control-label" for="lastName">Last name</label>
+          <input id="lastName"
+            class="form-control"
+            type="text"
+            name="lastName"
+            ng-model="apUserRegisterVm.registration.address.last_name"
+            placeholder="Doe"
+            required>
+            <div ng-messages="userRegForm.lastName.$error">
+              <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.lastName.$dirty">You must choose a last name</div>
+            </div>
+        </div>
+      </div>
+      <div class="form-group form-group-lg">
+        <label class="control-label" for="companyName">Company name</label>
+        <input id="companyName"
+          class="form-control"
+          type="text"
+          name="companyName"
+          ng-model="apUserRegisterVm.registration.company_name"
+          placeholder="Example Ltd.">
+      </div>
+      <div class="form-group form-group-lg">
+        <label class="control-label" for="userType">Customer group</label>
+        <select id="userType"
+          class="form-control"
+          name="userType"
+          ng-model="apUserRegisterVm.registration.type"
+          ng-options="item.type as item.label for item in apUserRegisterVm.userTypes"
+          ng-change="apUserRegisterVm.updateCustomType()"
+          required>
+            <option value="" disabled selected>-- Select the group that best describes you --</option>
+        </select>
+        <div ng-messages="userRegForm.userType.$error">
+          <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.userType.$dirty">You must select a group that best describes you</div>
+        </div>
+      </div>
+  </fieldset>
+  <fieldset>
+    <legend>Account details</legend>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="email">Email address</label>
+      <input id="email"
+        class="form-control"
+        type="email"
+        name="email"
+        ng-model="apUserRegisterVm.registration.email"
+        placeholder="name@example.com"
+        ap-user-check="email"
+        ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+        required>
+      <div ng-messages="userRegForm.email.$error" role="alert">
+        <div class="bg-danger" ng-message="emailValid" ng-show="userRegForm.$submitted || userRegForm.email.$dirty">Email is already in use</div>
+        <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.userType.$dirty">You must provide your email address</div>
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="username">Username</label>
+      <input id="username"
+        class="form-control"
+        type="test"
+        name="username"
+        ng-model="apUserRegisterVm.registration.username"
+        placeholder="Choose a username"
+        ap-user-check="username"
+        ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+        required>
+      <div ng-messages="userRegForm.username.$error" role="alert">
+        <div class="bg-danger" ng-message="userNameValid">Username is unavailable</div>
+        <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.username.$dirty">Username is required</div>
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="password">Password</label>
+      <div id="passwordHelp" class="help-block">Your password must be at least 8 characters long and must contain an uppercase character, a lowercase character and a number.</div>
+      <input id="password"
+        class="form-control"
+        type="password"
+        name="password"
+        ng-model="apUserRegisterVm.registration.plain_password"
+        ap-pass-valid
+        placeholder="At least 8 characters"
+        required
+        aria-describedby="passwordHelp">
+
+      <div ng-messages="userRegForm.password.$error"
+        ng-show="userRegForm.$submitted || userRegForm.password.$dirty"
+        role="alert">
+        <div class="bg-danger" ng-message="passLength">
+          <span class="fa fa-warning"></span>
+          Password must be at least 8 characters long
+        </div>
+        <div class="bg-danger" ng-message="required">
+          <span class="fa fa-warning"></span>
+          You must choose a password
+        </div>
+        <div class="bg-danger" ng-message="passFormat">
+          <span class="fa fa-warning"></span>
+          Password is invalid (Must contain uppercase and lowercase letters and also a number)
+        </div>
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="rePassword">Confirm your password</label>
+      <input id="rePassword"
+        class="form-control"
+        type="password"
+        name="passwordValidate"
+        ng-model="apUserRegisterVm.validate.password"
+        ap-pass-match="userRegForm.password"
+        placeholder="Confirm your password"
+        required>
+      <div ng-messages="userRegForm.passwordValidate.$error"
+        ng-show="userRegForm.passwordValidate.$dirty && apUserRegisterVm.registration.plain_password.length"
+        role="alert">
+        <div class="bg-danger" ng-message="passMatch">
+          <span class="fa fa-warning"></span>
+          Passwords do not match
+        </div>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Address details</legend>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="address1">Address</label>
+      <input id="address1"
+        class="form-control"
+        type="text"
+        name="address1"
+        ng-model="apUserRegisterVm.registration.address.address1"
+        placeholder="First line of address"
+        required>
+        <div ng-messages="userRegForm.address1.$error" role="alert">
+          <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.address1.$dirty">We require your address</div>
+        </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label sr-only" for="address2">Street</label>
+      <input id="address2"
+        class="form-control"
+        type="text"
+        name="address2"
+        ng-model="apUserRegisterVm.registration.address.address2"
+        placeholder="Second line of address">
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="city">City</label>
+      <input id="city"
+        class="form-control"
+        type="text"
+        name="city"
+        ng-model="apUserRegisterVm.registration.address.city"
+        placeholder="City"
+        required>
+        <div ng-messages="userRegForm.city.$error" role="alert">
+          <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.city.$dirty">Please provide your City</div>
+        </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="county">County</label>
+      <input id="county"
+        class="form-control"
+        type="text"
+        name="county"
+        ng-model="apUserRegisterVm.registration.address.county"
+        placeholder="County">
+        <div ng-messages="userRegForm.county.$error" role="alert">
+          <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.county.$dirty">Please provide your county</div>
+        </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="country">Country</label>
+      <select id="country"
+        class="form-control"
+        name="countryCode"
+        ng-model="apUserRegisterVm.registration.address.country_code"
+        ng-options="name as value for (name, value) in apUserRegisterVm.countryList"
+        required>
+        <div ng-messages="userRegForm.countryCode.$error" role="alert">
+          <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.countryCode.$dirty">Please select your country</div>
+        </div>
+      </select>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="postcode">Postcode</label>
+      <input id="postcode"
+        class="form-control"
+        type="text"
+        name="postcode"
+        ng-model="apUserRegisterVm.registration.address.postcode"
+        placeholder="Postcode"
+        required>
+        <div ng-messages="userRegForm.postcode.$error" role="alert">
+          <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.postcode.$dirty">Please provide your postcode</div>
+        </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Contact details</legend>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="telephone">Telephone</label>
+      <input id="telephone"
+        class="form-control"
+        name="telephone"
+        type="tel"
+        ng-model="apUserRegisterVm.registration.telephone"
+        placeholder="Enter your telephone number"
+        required>
+        <div ng-messages="userRegForm.telephone.$error" role="alert">
+          <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.telephone.$dirty">Please provide your telephone number</div>
+        </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>VAT details</legend>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="vatNumber">VAT number</label>
+      <input id="vatNumber"
+        class="form-control"
+        type="text"
+        ng-model="apUserRegisterVm.registration.vat_number"
+        placeholder="Enter your VAT number (if required)">
+    </div>
+  </fieldset>
+  <div ng-show="userRegForm.$submitted">
+    <div ng-messages="userRegForm.$error" role="alert">
+      <div class="bg-danger" ng-message="required">Please ensure that all the fields marked above are completed</div>
+      <div class="bg-danger" ng-message="userNameValid">Your chosen username is unavailable</div>
+      <div class="bg-danger" ng-message="passLength">
+        <span class="fa fa-warning"></span>
+        Password must be at least 8 characters long
+      </div>
+      <div class="bg-danger" ng-message="passFormat">
+        <span class="fa fa-warning"></span>
+        Password is invalid (Must contain uppercase and lowercase letters and also a number)
+      </div>
+      <div class="bg-danger" ng-message="passMatch">
+        <span class="fa fa-warning"></span>
+        Please double check that your passwords match
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit" name="button">Register your account</button>
+</form>

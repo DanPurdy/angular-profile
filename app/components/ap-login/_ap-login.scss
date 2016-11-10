@@ -1,0 +1,29 @@
+// ==============================================================================
+//
+//  app/components/ap-login/_ap-login.scss
+//
+// ==============================================================================
+
+.ap-login {
+  text-align: center;
+
+  &__title {
+    font-size: 1.8rem;
+    color: palette(alr, ap-blue);
+  }
+
+  &__sub-title {
+    font-size: 1.1rem;
+    margin: 1rem 0 2rem;
+    color: palette(typography, text, x-light);
+  }
+
+  &__hr {
+    margin: 1rem 0;
+  }
+
+  &__footer-link {
+    text-align: center;
+    margin: 0.2rem 0 0;
+  }
+}

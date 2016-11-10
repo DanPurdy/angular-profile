@@ -1,0 +1,28 @@
+// =============================================================================
+//
+//  app/routes/error/_error.scss
+//
+//
+//
+// =============================================================================
+
+.error {
+  display: flex;
+  justify-content: center;
+  align-self: stretch;
+  height: calc(100vh - 120px);
+
+  &__container {
+    width: 60%;
+    max-width: 1024px;
+  }
+
+  &__icon {
+    font-size: 10rem;
+    color: palette(alr, alr-blue);
+  }
+
+  &__body {
+    margin-bottom: 2rem;
+  }
+}

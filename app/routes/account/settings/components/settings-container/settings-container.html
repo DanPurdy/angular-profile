@@ -1,0 +1,84 @@
+<section>
+  <div>
+    <!-- TODO decide whether this should appear at all on the parent users' settings -->
+    <alr-account-list-filter
+      ng-if="!settingsContainerVm.isLoading && settingsContainerVm.activeUser !== settingsContainerVm.parentUser"
+      data="settingsContainerVm.userAccounts"
+      active-id="settingsContainerVm.activeUser"
+      change-active="settingsContainerVm.setActiveUser(userId)"
+    ></alr-account-list-filter>
+  </div>
+  <div class="panel-body" ng-if="settingsContainerVm.isLoading">
+    <alr-loading-data></alr-loading-data>
+  </div>
+  <alr-tabs ng-if="!settingsContainerVm.isLoading">
+    <alr-pane title="Personal information">
+      <div class="panel-body">
+        <user-details
+          user="settingsContainerVm.user"
+          loading="settingsContainerVm.isLoading"
+          is-submitting="settingsContainerVm.isSubmitting"
+          result="settingsContainerVm.result"
+          button-opts="settingsContainerVm.buttonOpts"
+          on-save="settingsContainerVm.onSave(valid, form, user)"
+        ></user-details>
+      </div>
+    </alr-pane>
+    <alr-pane title="Account details">
+      <div class="panel-body">
+        <login-details
+          user="settingsContainerVm.user"
+          loading="settingsContainerVm.isLoading"
+          is-submitting="settingsContainerVm.isSubmitting"
+          result="settingsContainerVm.result"
+          button-opts="settingsContainerVm.buttonOpts"
+          on-save="settingsContainerVm.onSave(valid, form, user)"
+        ></login-details>
+      </div>
+    </alr-pane>
+    <alr-pane title="Address details">
+      <div class="panel-body">
+        <address-details
+          user="settingsContainerVm.user"
+          loading="settingsContainerVm.isLoading"
+          is-submitting="settingsContainerVm.isSubmitting"
+          result="settingsContainerVm.result"
+          button-opts="settingsContainerVm.buttonOpts"
+          on-save="settingsContainerVm.onSave(valid, form, user)"
+        ></address-details>
+      </div>
+    </alr-pane>
+    <alr-pane title="Contact details">
+      <div class="panel-body">
+        <contact-details
+          user="settingsContainerVm.user"
+          loading="settingsContainerVm.isLoading"
+          is-submitting="settingsContainerVm.isSubmitting"
+          result="settingsContainerVm.result"
+          button-opts="settingsContainerVm.buttonOpts"
+          on-save="settingsContainerVm.onSave(valid, form, user)"
+        ></contact-details>
+      </div>
+    </alr-pane>
+    <alr-pane title="VAT details">
+      <div class="panel-body">
+        <vat-details
+          user="settingsContainerVm.user"
+          loading="settingsContainerVm.isLoading"
+          is-submitting="settingsContainerVm.isSubmitting"
+          result="settingsContainerVm.result"
+          button-opts="settingsContainerVm.buttonOpts"
+          on-save="settingsContainerVm.onSave(valid, form, user)"
+        ></vat-details>
+      </div>
+    </alr-pane>
+    <alr-pane title="Linked accounts" ng-if="!settingsContainerVm.userId">
+      <div class="panel-body">
+        <parent-child-details
+          user="settingsContainerVm.user"
+          loading="settingsContainerVm.isLoading"
+        ></parent-child-details>
+      </div>
+    </alr-pane>
+  </alr-tabs>
+</section>
