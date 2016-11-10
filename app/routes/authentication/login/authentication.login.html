@@ -1,26 +1,3 @@
-<div class="panel">
-  <div class="panel-heading" ng-show="apAuthLoginVm.loggedOut">
-    <p class="bg-success">You're now successfully logged out. You can log in again below.</p>
-  </div>
-  <div class="ap-splash">
-    <div class="panel-heading">
-      <h1 class="ap-splash__heading">I already have an account</h1>
-    </div>
-    <div class="panel-body">
-      <ap-login
-        result="apAuthLoginVm.result"
-        on-login="apAuthLoginVm.login(valid, form, credentials)"
-        is-submitting="apAuthLoginVm.isSubmitting"
-      >
-    </ap-login>
-    </div>
-    <div class="panel-heading">
-      <h1 class="ap-splash__heading">Don't have an account yet?</h1>
-    </div>
-    <div class="panel-body">
-      <a class="btn btn-primary btn-lg btn-block" ui-sref="authentication.register.form" href="/sign-up">
-        Sign up for an account
-      </a>
-    </div>
-  </div>
-</div>
+<main>
+  <div ui-view></div>
+</main>

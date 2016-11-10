@@ -1,14 +1,15 @@
 // =============================================================================
 //
-//  app/routes/authentication/login/authentication.login.spec.js
+//  app/routes/authentication/login/components/login-form-container/
+//  login-form-container-component.spec.js
 //
 // =============================================================================
 
 /* eslint-disable no-unused-expressions */
 
-import authModule from '../authentication.module';
-import authLoginModule from './authentication.login.module';
-import AuthenticationLoginController from './authentication.login.controller';
+import authModule from '../../../authentication.module';
+import ApLoginFormContainerComponent from './login-form-container-component';
+import ApLoginFormContainerController from './login-form-container-controller';
 
 let $rootScope;
 let scope;
@@ -21,18 +22,15 @@ let AuthenticationService;
 let FormService;
 let newForm;
 
-const state = 'authentication.login';
-
 describe('Route: /login', () => {
   beforeEach(
     angular.mock.module(authModule),
   );
 
   beforeEach(() => {
-    angular.mock.module(authLoginModule);
+    angular.mock.module(ApLoginFormContainerComponent);
     angular.mock.module($provide => {
       $provide.value('FormService', {
-        getLoginButtonOptions: () => false,
         onSuccess: () => {},
         onFailure: () => {},
       });
@@ -50,28 +48,18 @@ describe('Route: /login', () => {
     };
   });
 
-  beforeEach(inject((_$rootScope_, _$controller_, _$state_, _$injector_, $templateCache) => {
+  beforeEach(inject((_$rootScope_, _$controller_, _$state_, _FormService_, _$injector_) => {
     $rootScope = _$rootScope_;
     $controller = _$controller_;
     $state = _$state_;
+    FormService = _FormService_;
     $injector = _$injector_;
-    $templateCache.put('./authentication.login.html', '');
   }));
-
-  it('should respond to URL', () => {
-    expect($state.href(state)).to.equal('#/login');
-  });
-
-  it('should transition to that state', () => {
-    $state.transitionTo(state);
-    $rootScope.$apply();
-    expect($state.current.name).to.equal(state);
-  });
 
   describe('Controller', () => {
     beforeEach(() => {
       scope = $rootScope.$new();
-      controller = $controller(AuthenticationLoginController, {
+      controller = $controller(ApLoginFormContainerController, {
         $scope: scope,
       });
       sandbox = sinon.sandbox.create();
@@ -79,10 +67,6 @@ describe('Route: /login', () => {
 
     afterEach(() => {
       sandbox.reset();
-    });
-
-    it('should be attached to the state', () => {
-      expect($state.get(state).controller).to.deep.equal(AuthenticationLoginController);
     });
 
     describe('login', () => {
@@ -125,7 +109,6 @@ describe('Route: /login', () => {
       });
 
       it('should call the form service success method when succesful', () => {
-        FormService = $injector.get('FormService');
         const formSuccess = sinon.spy(FormService, 'onSuccess');
         return controller.login(true, newForm, testCreds).then(() => {
           expect(formSuccess).to.have.been.calledOnce;
@@ -133,7 +116,6 @@ describe('Route: /login', () => {
       });
 
       it('should call the form service failure method when unsuccesful', () => {
-        FormService = $injector.get('FormService');
         AuthenticationService = $injector.get('AuthenticationService');
         sinon.stub(AuthenticationService, 'login', () => Promise.reject('failure'));
         const formFailure = sinon.spy(FormService, 'onFailure');

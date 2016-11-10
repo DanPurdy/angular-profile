@@ -1,0 +1,29 @@
+<div class="panel">
+  <div class="panel-heading" ng-show="apLoginFormContainerVm.loggedOut">
+    <p class="bg-success">You're now successfully logged out. You can log in again below.</p>
+  </div>
+  <div class="panel-heading" ng-show="apLoginFormContainerVm.registeredUser.username">
+    <p class="bg-success">Thanks for registering, you can now sign in below</p>
+  </div>
+  <div class="ap-splash">
+    <div class="panel-heading">
+      <h1 class="ap-splash__heading">I already have an account</h1>
+    </div>
+    <div class="panel-body">
+      <ap-login
+        result="apLoginFormContainerVm.result"
+        on-login="apLoginFormContainerVm.login(valid, form, credentials)"
+        is-submitting="apLoginFormContainerVm.isSubmitting"
+      >
+    </ap-login>
+    </div>
+    <div class="panel-heading">
+      <h1 class="ap-splash__heading">Don't have an account yet?</h1>
+    </div>
+    <div class="panel-body">
+      <a class="btn btn-primary btn-lg btn-block" ui-sref="authentication.register.form" href="/sign-up">
+        Sign up for an account
+      </a>
+    </div>
+  </div>
+</div>

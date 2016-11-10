@@ -25,10 +25,6 @@ class AccountController {
 
     this.AuthenticationService = AuthenticationService;
     this.$state = $state;
-    this.$onInit = () => {
-      this.getCredit();
-      this.watchCredits();
-    };
   }
 
   /**
@@ -39,7 +35,7 @@ class AccountController {
   logout() {
     return this.AuthenticationService.logout()
       .then(() => {
-        this.$state.go('authentication.login');
+        this.$state.go('authentication.login.form');
       })
       .catch(e => {
         // TODO show an error message to the user

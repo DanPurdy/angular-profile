@@ -1,18 +1,19 @@
 // =============================================================================
 //
-//  app/routes/authentication/login/authentication.login.controller.js
+//  app/routes/authentication/login/components/login-form-container/
+//  login-form-container-controller.js
 //
 // =============================================================================
 
 /**
- * AuthenticationLoginController class handles our interaction with the Container component
+ * LoginFormContainerController class handles our interaction with the login container component
  *
- * @class AuthenticationLoginController
+ * @class LoginFormContainerController
  */
-class AuthenticationLoginController {
+class LoginFormContainerController {
 
   /**
-   * Constructor for the AuthenticationLoginController class
+   * Constructor for the LoginFormContainerController class
    *
    * @constructor
    * @param {Object} FormService - Our Form service to handle all form interactions
@@ -62,4 +63,4 @@ class AuthenticationLoginController {
   }
 }
 
-export default AuthenticationLoginController;
+export default LoginFormContainerController;

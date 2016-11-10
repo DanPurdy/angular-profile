@@ -4,12 +4,13 @@
 //
 // ==============================================================================
 
-import ApLoginModule from '../../../components/ap-login/ap-login-component';
 import authLoginConfig from './authentication.login.config';
+import ApLoginFormContainerModule
+  from './components/login-form-container/login-form-container-component';
 
 const authLoginModule = angular.module('angularProfile.authentication.login', [
   'ui.router',
-  ApLoginModule,
+  ApLoginFormContainerModule,
 ]);
 
 authLoginModule
