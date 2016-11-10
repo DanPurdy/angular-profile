@@ -15,7 +15,7 @@ const clean = new CleanWebpackPlugin(['dist'],
     dry: false,
   });
 const define = new webpack.DefinePlugin({
-  __API_URL__: '\'http://localhost:8080/api\'',
+  __API_URL__: '\'https://localhost:8080/api\'',
   __APP_URL__: '\'https://localhost:8000\'',
 });
 
