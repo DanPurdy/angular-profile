@@ -49,33 +49,6 @@ class AbstractResource {
   }
 
   /**
-   * Posts to our search endpoint with the user defined terms
-   *
-   * @param {Object} terms - The user defined search terms
-   * @param {string} range - A possible range header
-   * @returns {Object} A Restangular promise
-   */
-  search(terms, range) {
-    if (range) {
-      return this.Restangular.all(`${this.route}${this.searchRoute}`)
-        .post(terms, {}, { Range: range });
-    }
-    return this.Restangular.all(`${this.route}${this.searchRoute}`)
-      .post(terms);
-  }
-
-  /**
-   * Basic GET API call for our notes endpoints
-   *
-   * @param {number} id - The id of the resource to get
-   * @returns {Object} A restangularified element
-   */
-  getNotes(id) {
-    return this.Restangular.one(`${this.route}`, `${id}`)
-      .getList('notes');
-  }
-
-  /**
    * Basic POST API call
    *
    * @param {*} newResource - The resource to be POST'ed
