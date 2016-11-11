@@ -189,14 +189,14 @@ describe('TokenModel', () => {
     it('should return our current user ID if cached', () => {
       tokenModel.cachedCurrentUser = user;
 
-      expect(tokenModel.getCurrentUserId()).to.equal(user.id);
+      expect(tokenModel.getCurrentUserId()).to.equal(user._id);
     });
 
     it('should return our current user ID from the store if cache is empty', () => {
       const stub = sinon.stub(tokenModel.store, 'get', () => user);
 
       expect(tokenModel.cachedCurrentUser).to.be.null;
-      expect(tokenModel.getCurrentUserId()).to.equal(user.id);
+      expect(tokenModel.getCurrentUserId()).to.equal(user._id);
       stub.restore();
     });
 

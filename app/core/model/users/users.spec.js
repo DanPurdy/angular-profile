@@ -84,7 +84,7 @@ describe('UsersModel', () => {
 
     describe('register', () => {
       const item = {
-        id: 1,
+        _id: 1,
         test: 'test',
         cas: 'cas',
       };

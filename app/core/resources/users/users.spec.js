@@ -66,7 +66,7 @@ describe('UsersResource', () => {
       const item = {
         email: 'email',
       };
-      const expectedResponse = Object.assign({ id: 1 }, item);
+      const expectedResponse = Object.assign({ _id: 1 }, item);
 
       it('should call the checkAvailability POST resource', () => {
         $httpBackend.expectPOST(`${route}`, item).respond(expectedResponse);

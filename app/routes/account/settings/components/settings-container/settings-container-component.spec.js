@@ -16,21 +16,17 @@ let newForm;
 let $injector;
 
 const testUser = {
-  id: 1,
+  _id: 1,
   email: 'test@test.com',
-  address: {
-    first_name: 'test',
-    last_name: 'test',
-  },
+  firstName: 'test',
+  lastName: 'test',
 };
 
 const testUserTwo = {
-  id: 2,
+  _id: 2,
   email: 'test@testing.com',
-  address: {
-    first_name: 'testing',
-    last_name: 'testing',
-  },
+  firstName: 'testing',
+  lastName: 'testing',
 };
 
 const updatedTestUser = Object.assign({ status: 'updated' }, testUser);
@@ -41,6 +37,7 @@ describe('Component: settings-container-component', () => {
     angular.mock.module($provide => {
       $provide.value('AuthenticationService', {
         getCurrentUser: () => testUser,
+        updateCurrentUser: () => true,
       });
       $provide.value('UsersModel', {
         save: input => Promise.resolve(input),

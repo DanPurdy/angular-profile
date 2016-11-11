@@ -21,8 +21,7 @@ class ApHeaderController {
     'ngInject';
 
     this.$rootScope = $rootScope;
-    this.user =
-      `${$rootScope.currentUser.firstName} ${$rootScope.currentUser.lastName}`;
+    this.user = $rootScope.currentUser.userName;
   }
 }
 

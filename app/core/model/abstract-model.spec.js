@@ -13,7 +13,7 @@ describe('AbstractModel', () => {
   const route = 'test';
   const id = '1';
   const item = {
-    id,
+    _id: id,
     test: 'test',
     cas: 'cas',
   };
@@ -119,13 +119,13 @@ describe('AbstractModel', () => {
     itemUpdated.newAttribute = 'new-attribute';
 
     abstractModel.collection = [{
-      id: '2',
+      _id: '2',
       test: 'test-2',
     }, collection[0]];
     expect(abstractModel.getCollection()[1].newAttribute).to.be.undefined;
 
     return abstractModel.save(itemUpdated).then(() => {
-      expect(abstractModel.getCollection()[1].id).to.equal(item.id);
+      expect(abstractModel.getCollection()[1]._id).to.equal(item._id);
       expect(abstractModel.getCollection()[1].test).to.equal(itemUpdated.test);
       expect(abstractModel.getCollection()[1].newAttribute).to.be.defined;
       expect(abstractModel.getCollection()[1].newAttribute).to.equal(itemUpdated.newAttribute);
@@ -137,13 +137,13 @@ describe('AbstractModel', () => {
 
   it('should create item and push item to collection with new id', () => {
     const newItem = Object.assign({}, item);
-    newItem.id = null;
+    newItem._id = null;
     const stub = sinon.stub(abstractModel.resource, 'create', () => Promise.resolve(item));
 
     expect(abstractModel.getCollection().length).to.equal(0);
 
     return abstractModel.save(newItem).then(() => {
-      expect(abstractModel.getCollection()[0].id).to.equal(item.id);
+      expect(abstractModel.getCollection()[0]._id).to.equal(item._id);
       expect(stub).calledOnce;
       stub.should.have.been.calledWith(newItem);
       stub.restore();
@@ -158,7 +158,7 @@ describe('AbstractModel', () => {
 
     return abstractModel.delete(item).then(() => {
       expect(abstractModel.getCollection().length).to.equal(0);
-      stub.should.have.been.calledWith(item.id);
+      stub.should.have.been.calledWith(item._id);
       expect(stub).called;
     });
   });
@@ -169,7 +169,7 @@ describe('AbstractModel', () => {
 
   describe('search', () => {
     const terms = {
-      id: 1,
+      _id: 1,
       status: 'complete',
     };
     it('should call our abstract resource with the correct terms', () => {

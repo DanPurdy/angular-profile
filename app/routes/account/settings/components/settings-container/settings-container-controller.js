@@ -43,6 +43,7 @@ class SettingsContainerController {
     this.result = null;
     this.isSubmitting = false;
     this.$onInit = this.getUserDetails;
+    this.dummyPass = 'dummyP4ss';
   }
 
   /**
@@ -56,11 +57,38 @@ class SettingsContainerController {
       .then(response => {
         this.isLoading = false;
         this.user = response;
-        this.$scope.$apply();
+        this.dummyUser = this.setupDummyUser();
       })
       .catch(e => {
         console.error(e); // eslint-disable-line no-console,angular/log
       });
+  }
+
+
+  /**
+   * Make a copy of our user object for comparison later on when updating
+   *
+   * @returns {Object} A copy of the current user
+   */
+  setupDummyUser() {
+    const tempUser = Object.assign({}, this.user);
+    tempUser.password = this.dummyPass;
+    return tempUser;
+  }
+
+
+  /**
+   * Compare our new user object and the current user object and act accordingly
+   *
+   * @param  {Object} user - The updated user Object
+   * @returns {Object} The updated user
+   */
+  compareUsers(user) {
+    const newUser = Object.assign({}, user);
+    if (newUser.password === this.dummyPass) {
+      delete (newUser.password);
+    }
+    return Object.assign({}, this.user, newUser);
   }
 
   /**
@@ -78,14 +106,17 @@ class SettingsContainerController {
     this.isSubmitting = true;
     this.result = null;
 
-    return this.UsersModel.save(user)
+    return this.UsersModel.save(this.compareUsers(user))
       .then(response => {
         this.UserService.onUpdateSuccess(this);
+        this.AuthenticationService.updateCurrentUser(user);
         this.user = response;
+        this.dummyUser = this.setupDummyUser();
         self.isSubmitting = false; // eslint-disable-line no-param-reassign
         form.$setPristine();
       }).catch(e => {
         this.UserService.onUpdateFailure(this, e);
+        this.dummyUser = this.setupDummyUser(); // reset our user to the old state
         self.isSubmitting = false; // eslint-disable-line no-param-reassign
         form.$setPristine();
         console.error('update user', e); // eslint-disable-line no-console,angular/log

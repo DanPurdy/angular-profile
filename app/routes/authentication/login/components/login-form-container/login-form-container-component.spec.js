@@ -39,7 +39,7 @@ describe('Route: /login', () => {
       });
       $provide.value('AuthenticationService', {
         login: () => Promise.resolve(),
-        getCurrentUser: () => ({ id: 1 }),
+        getCurrentUser: () => ({ _id: 1 }),
       });
     });
     newForm = {

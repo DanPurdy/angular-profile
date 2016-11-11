@@ -123,7 +123,7 @@ class AuthenticationService {
    * @returns {boolean} Whether the user object is the same user as the current user
    */
   isCurrentUser(user) {
-    return user.id === this.getCurrentUser().id;
+    return user._id === this.getCurrentUser()._id;
   }
 
   /**
@@ -133,7 +133,7 @@ class AuthenticationService {
    * @returns {Object} A promise object
    */
   updateCurrentUser(user = this.TokenModel.getCurrentUser()) {
-    return this.TokenModel.updateCurrentUser(user.id)
+    return this.TokenModel.updateCurrentUser(user._id)
       .then(updatedUser => {
         this.$rootScope.currentUser = updatedUser;
       });
