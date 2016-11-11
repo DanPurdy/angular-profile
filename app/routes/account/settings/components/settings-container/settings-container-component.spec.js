@@ -15,12 +15,16 @@ let AuthenticationService;
 let newForm;
 let $injector;
 
+const dummyPass = 'test';
 const testUser = {
   _id: 1,
   email: 'test@test.com',
   firstName: 'test',
   lastName: 'test',
+  password: 't3sT',
 };
+
+const dummyUser = Object.assign({}, testUser, { password: dummyPass });
 
 const testUserTwo = {
   _id: 2,
@@ -140,6 +144,40 @@ describe('Component: settings-container-component', () => {
               });
           },
         );
+      });
+
+      // ==============================================================================
+      //  setupDummyUser
+      // ==============================================================================
+
+      describe('setupDummyUser', () => {
+        it('should return our user object with dummy password', () => {
+          controller.dummyPass = dummyPass;
+          controller.user = testUser;
+          expect(controller.setupDummyUser()).to.deep.equal(dummyUser);
+        });
+      });
+
+      // ==============================================================================
+      //  compareUsers
+      // ==============================================================================
+
+      describe('compareUsers', () => {
+        it('should return our user object with correct password if dummy pass is present', () => {
+          const newUser = Object.assign({}, testUser, { password: dummyPass });
+          const expected = Object.assign({}, testUser);
+          controller.dummyPass = dummyPass;
+          controller.user = testUser;
+          expect(controller.compareUsers(newUser)).to.deep.equal(expected);
+        });
+
+        it('should return our user object with correct password if password is updated', () => {
+          const newUser = Object.assign({}, testUser, { password: 'new' });
+          const expected = Object.assign({}, testUser, { password: 'new' });
+          controller.dummyPass = dummyPass;
+          controller.user = testUser;
+          expect(controller.compareUsers(newUser)).to.deep.equal(expected);
+        });
       });
 
       // ==============================================================================
