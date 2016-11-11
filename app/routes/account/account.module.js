@@ -9,12 +9,14 @@
 import accountConfig from './account.config';
 import settings from './settings/account.settings.module';
 
-// import ApSidebarModule from '../../components/ap-sidebar/ap-sidebar-component';
-// import ApHeaderModule from '../../components/ap-header/ap-header-component';
+import ApContainerModule from '../../components/ap-container/ap-container-component';
+import ApSidebarModule from '../../components/ap-sidebar/ap-sidebar-component';
+import ApHeaderModule from '../../components/ap-header/ap-header-component';
 
 const accountModule = angular.module('angularProfile.account', [
-  // ApSidebarModule,
-  // ApHeaderModule,
+  ApContainerModule,
+  ApSidebarModule,
+  ApHeaderModule,
   settings,
 ]);
 

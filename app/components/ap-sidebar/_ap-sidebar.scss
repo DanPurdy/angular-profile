@@ -1,0 +1,85 @@
+// ==============================================================================
+//
+//  app/components/ap-sidebar/_ap-sidebar.scss
+//
+// ==============================================================================
+
+.ap-sidebar {
+  height: 100%;
+  background-color: palette(ap, ap-white);
+  border: 1px solid palette(ap, ap-grey, xx-light);
+  width: 235px;
+
+  &__nav {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__nav-item {
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-bottom: 1px solid palette(ap, ap-blue, x-light);
+
+    &:first-of-type {
+      border-top: 1px solid palette(ap, ap-blue, x-light);
+    }
+  }
+
+  &__nav-icon {
+    font-size: 1.125rem;
+    padding: 0.5625rem;
+    color: palette(ap, ap-blue, light);
+  }
+
+  &__nav-anchor {
+    display: block;
+    font-size: 1rem;
+    color: palette(ap, ap-blue);
+    box-sizing: border-box;
+    position: relative;
+    padding: 0.625rem;
+
+    &:active,
+    &:focus,
+    &:hover {
+      color: palette(ap, ap-blue);
+      background-color: palette(ap, ap-blue, x-light);
+      text-decoration: none;
+
+      > i {
+        color: palette(ap, ap-blue);
+      }
+
+      > span {
+        border-bottom: 1px solid palette(ap, ap-blue);
+      }
+    }
+
+    &--active {
+      font-weight: bold;
+      background-color: palette(ap, ap-blue, x-light);
+      box-shadow: -5px 0 0 palette(ap, ap-blue), inset 0 1px 1px -1px palette(ap, ap-grey, x-light), inset 0 -1px 1px -1px palette(ap, ap-grey, x-light);
+      text-decoration: none;
+
+      &:active,
+      &:focus,
+      &:hover {
+        cursor: default;
+
+        > span {
+          border-bottom: 1px solid transparent;
+        }
+      }
+
+      > i {
+        color: palette(ap, ap-blue);
+      }
+    }
+  }
+
+  &__nav-text {
+    overflow: hidden;
+  }
+}
