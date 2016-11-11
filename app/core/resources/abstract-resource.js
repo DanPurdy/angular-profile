@@ -94,14 +94,13 @@ class AbstractResource {
    * @returns {Object} A restangularified element
    */
   update(updatedResource) {
-    // TODO check why restangular is being stripped from login object
-    if (!updatedResource.put) {
-      this.Restangular.restangularizeElement(null, updatedResource, this.route);
-      return updatedResource.put();
-    }
-    // Restangular bug where the object isn't updated if it's already restangularified
-    const updated = this.Restangular.copy(updatedResource);
-    return updated.put();
+    this.Restangular.restangularizeElement(
+      null,
+      updatedResource,
+      `${this.route}/${updatedResource._id}`,
+    );
+
+    return updatedResource.put();
   }
 
   /**

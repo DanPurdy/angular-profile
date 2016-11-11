@@ -7,42 +7,109 @@
   <fieldset>
     <legend>Personal information</legend>
     <div class="row">
-      <div class="form-group form-group-lg required col-lg-4">
+      <div class="form-group form-group-lg col-lg-5">
         <label class="control-label" for="firstName">First name</label>
         <input id="firstName"
           class="form-control"
           type="text"
           name="firstName"
-          ng-model="apUserDetailsFormVm.user.address.first_name"
+          ng-model="apUserDetailsFormVm.user.firstName"
           placeholder="John"
-          required>
+        >
       </div>
-      <div class="form-group form-group-lg required col-lg-4">
+      <div class="form-group form-group-lg col-lg-5">
         <label class="control-label" for="lastName">Last name</label>
         <input id="lastName"
           class="form-control"
-          type="test"
+          type="text"
           name="lastName"
-          ng-model="apUserDetailsFormVm.user.address.last_name"
+          ng-model="apUserDetailsFormVm.user.lastName"
           placeholder="Doe"
-          required>
-      </div>
-    </div>
-    <div class="row">
-      <div class="form-group form-group-lg required col-lg-8">
-        <label class="control-label" for="companyName">Company name</label>
-        <input id="companyName"
-          class="form-control"
-          type="test"
-          name="companyName"
-          ng-model="apUserDetailsFormVm.user.company_name"
-          placeholder="Example Ltd."
-          required>
+        >
       </div>
     </div>
   </fieldset>
-  <jp-ng-bs-animated-button class="btn-lg"
-    is-submitting="apUserDetailsFormVm.isSubmitting"
-    result="apUserDetailsFormVm.result"
-    options="apUserDetailsFormVm.buttonOpts"></jp-ng-bs-animated-button>
+  <fieldset>
+    <legend>Account details</legend>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="username">Username</label>
+      <input id="username"
+        class="form-control"
+        type="text"
+        name="username"
+        ng-model="apUserDetailsFormVm.user.username"
+        placeholder="Choose a username"
+        ap-user-check="username"
+        ng-model-options="{ allowInvalid: false, updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+        required
+      >
+      <div ng-messages="userDetailsForm.username.$error" role="alert">
+        <div class="bg-danger" ng-message="userNameValid">Username is unavailable</div>
+        <div class="bg-danger" ng-message="required" ng-show="userDetailsForm.$submitted || userDetailsForm.username.$dirty">We require a username</div>
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="email">Email address</label>
+      <input id="email"
+        class="form-control"
+        type="email"
+        name="email"
+        ng-model="apUserDetailsFormVm.user.email"
+        placeholder="name@example.com"
+        ap-user-check="email"
+        ng-model-options="{ allowInvalid: false, updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
+        required>
+      <div ng-messages="userDetailsForm.email.$error" role="alert">
+        <div class="bg-danger" ng-message="emailValid" ng-show="userDetailsForm.$submitted || userDetailsForm.email.$dirty">Email is already in use</div>
+        <div class="bg-danger" ng-message="required" ng-show="userDetailsForm.$submitted || userDetailsForm.userType.$dirty">You must provide your email address</div>
+      </div>
+    </div>
+    <div class="form-group form-group-lg">
+      <label class="control-label" for="password">Password</label>
+      <div id="passwordHelp" class="help-block">Your password must be at least 4 characters long and must contain an uppercase character, a lowercase character and a number.</div>
+      <input id="password"
+        class="form-control"
+        type="password"
+        name="password"
+        ng-model="apUserDetailsFormVm.user.password"
+        ap-pass-valid
+        required
+        aria-describedby="passwordHelp">
+
+      <div ng-messages="userDetailsForm.password.$error"
+        ng-show="userDetailsForm.$submitted || userDetailsForm.password.$dirty"
+        role="alert">
+        <div class="bg-danger" ng-message="passLength">Password must be at least 4 characters long</div>
+        <div class="bg-danger" ng-message="required">You must choose a password</div>
+        <div class="bg-danger" ng-message="passFormat">Password is invalid (Must contain uppercase and lowercase letters and also a number)</div>
+      </div>
+    </div>
+    <div class="form-group form-group-lg" ng-if="userDetailsForm.password.$dirty">
+      <label class="control-label" for="rePassword">Confirm your password</label>
+      <input id="rePassword"
+        class="form-control"
+        type="password"
+        name="passwordValidate"
+        ng-model="apUserDetailsFormVm.validate.passwordCheck"
+        ap-pass-match="userDetailsForm.password"
+        placeholder="Confirm your password"
+        required>
+      <div ng-messages="userDetailsForm.passwordValidate.$error"
+        ng-show="userDetailsForm.passwordValidate.$dirty && apUserDetailsFormVm.user.password.length"
+        role="alert">
+        <div class="bg-danger" ng-message="passMatch">Passwords do not match</div>
+        <div class="bg-danger" ng-message="required">Please retype your password again</div>
+      </div>
+    </div>
+  </fieldset>
+  <div ng-show="userDetailsForm.$submitted">
+    <div ng-messages="userDetailsForm.$error" role="alert">
+      <div class="bg-danger" ng-message="required">Please ensure that all the fields marked above are completed</div>
+      <div class="bg-danger" ng-message="userNameValid">Your chosen username is unavailable</div>
+      <div class="bg-danger" ng-message="passLength">Password must be at least 8 characters long</div>
+      <div class="bg-danger" ng-message="passFormat">Password is invalid (Must contain uppercase and lowercase letters and also a number)</div>
+      <div class="bg-danger" ng-message="passMatch">Please double check that your passwords match</div>
+    </div>
+  </div>
+  <button class="btn btn-primary" ng-disabled="!userDetailsForm.$dirty || !userDetailsForm.$valid" type="submit" name="button">Update your Profile</button>
 </form>

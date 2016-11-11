@@ -70,7 +70,7 @@ class AbstractModel {
   getItemById(id) {
     const item = this.collection
       .filter(collectionItem => (
-        collectionItem.id === id
+        collectionItem._id === id
       ));
 
     if (item.length) {
@@ -122,12 +122,12 @@ class AbstractModel {
    * @returns {Object} A restangular promise
    */
   save(item) {
-    if (item.id) {
+    if (item._id) {
       return this.resource.update(item)
         .then(() => {
           let recordIndex = -1;
           const record = this.collection.filter((singleRecord, index) => {
-            if (singleRecord.id === item.id) {
+            if (singleRecord._id === item._id) {
               recordIndex = index;
               return true;
             }
@@ -158,7 +158,7 @@ class AbstractModel {
    * @returns {Object} A promise
    */
   delete(item) {
-    return this.resource.delete(item.id).then(() => {
+    return this.resource.delete(item._id).then(() => {
       this.collection.splice(this.collection.indexOf(item), 1);
     });
   }

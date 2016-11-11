@@ -84,7 +84,7 @@ class TokenModel {
    * @returns {number} The current user ID
    */
   getCurrentUserId() {
-    return this.getCurrentUser().id;
+    return this.getCurrentUser()._id;
   }
 
   /**
