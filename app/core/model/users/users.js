@@ -55,17 +55,6 @@ class UsersModel extends AbstractModel {
         return Promise.reject('Empty Response');
       });
   }
-
-  /**
-   * Handles the resetting of a password
-   *
-   * @param {Object} credentials - The credentials submitted
-   * @param {Object} token - The password reset token
-   * @returns {Promise} The request promise
-   */
-  updatePassword(credentials, token) {
-    return this.resource.updatePassword(credentials, token);
-  }
 }
 
 // export as an angular module
