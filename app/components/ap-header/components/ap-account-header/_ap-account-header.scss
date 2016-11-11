@@ -1,0 +1,34 @@
+// ==============================================================================
+//
+//  app/components/ap-header/components/ap-account-header/_ap-account-header.scss
+//
+// ==============================================================================
+
+.ap-account-header {
+  &__content {
+    padding: 0 1.25rem;
+    display: flex;
+    align-self: stretch;
+    align-items: center;
+  }
+
+  &__item {
+    &:first-of-type {
+      margin-right: 1rem;
+    }
+  }
+
+  &__user {
+    font-family: 'Times', 'Times New Roman', serif;
+    font-size: 1.25rem;
+    font-style: italic;
+    color: palette(ap, ap-blue);
+    margin-bottom: 0.5rem;
+  }
+
+  &__logout {
+    font-family: 'Arial', serif;
+    font-size: 1rem;
+    font-style: normal;
+  }
+}

@@ -1,0 +1,93 @@
+// ==============================================================================
+//
+//  app/components/ap-header/ap-header.scss
+//
+// ==============================================================================
+
+.ap-header {
+  display: flex;
+  min-height: 75px;
+  margin-bottom: 15px;
+  background-color: palette(ap, ap-white);
+  border-bottom: 1px solid palette(ap, ap-grey, xx-light);
+
+  &--left {
+    flex: 1;
+  }
+
+  &--right {
+    justify-content: flex-end;
+    flex: 2;
+    display: flex;
+    align-items: stretch;
+    align-content: stretch;
+  }
+
+  &__brand-anchor {
+    display: inline-block;
+    margin: 20px 0 20px 20px;
+  }
+
+  &__nav {
+    list-style: none;
+    width: 100%;
+    margin: 0;
+    display: flex;
+    align-items: stretch;
+    align-content: stretch;
+    justify-content: flex-end;
+  }
+
+  &__nav-item {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    border-left: 1px solid palette(ap, ap-grey, xx-light);
+
+    &:hover,
+    &:focus {
+      background-color: palette(ap, ap-blue, x-light);
+
+      &:last-of-type {
+        background-color: transparent;
+      }
+    }
+
+    &:last-of-type {
+      align-items: center;
+    }
+  }
+
+  &__nav-anchor {
+    padding: 0 1.875rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: none;
+
+      > span {
+        border-bottom: 1px solid palette(ap, ap-blue);
+      }
+    }
+
+    > span {
+      border-bottom: 1px solid transparent;
+    }
+  }
+
+  &__title {
+    font-size: 2rem;
+    margin: 0.4rem 0;
+    padding: 0.2rem;
+  }
+}
+
+// ==============================================================================
+//  Imports - sub components
+// ==============================================================================
+
+@import 'components/ap-account-header/ap-account-header';

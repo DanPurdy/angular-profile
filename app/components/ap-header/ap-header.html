@@ -1,0 +1,33 @@
+<header class="ap-header">
+  <div class="ap-header--left">
+    <h1 class="ap-header__title">
+      <a class="ap-header__brand-anchor" ui-sref="angularProfile.account.settings">
+        Angular Profile
+      </a>
+    </h1>
+  </div>
+  <nav class="ap-header--right">
+    <ul class="ap-header__nav">
+      <li class="ap-header__nav-item">
+        <a class="ap-header__nav-anchor" href="https://dpurdy.me" target="_blank">
+          <span>Portfolio</span>
+        </a>
+      </li>
+      <li class="ap-header__nav-item">
+        <a class="ap-header__nav-anchor" href="https://github.com/danpurdy" target="_blank">
+          <span>Github</span>
+        </a>
+      </li>
+      <li class="ap-header__nav-item">
+        <a class="ap-header__nav-anchor" href="https://medium.com/@danpurdy0" target="_blank">
+          <span>Medium</span>
+        </a>
+      </li>
+      <li class="ap-header__nav-item">
+        <div class="ap-header__account-details">
+          <ap-account-header ap-user="apHeaderVm.user" logout="apHeaderVm.logout()"></ap-account-header>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
