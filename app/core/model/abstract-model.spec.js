@@ -13,7 +13,7 @@ describe('AbstractModel', () => {
   const route = 'test';
   const id = '1';
   const item = {
-    id,
+    _id: id,
     test: 'test',
     cas: 'cas',
   };
@@ -119,7 +119,7 @@ describe('AbstractModel', () => {
     itemUpdated.newAttribute = 'new-attribute';
 
     abstractModel.collection = [{
-      id: '2',
+      _id: '2',
       test: 'test-2',
     }, collection[0]];
     expect(abstractModel.getCollection()[1].newAttribute).to.be.undefined;
@@ -169,7 +169,7 @@ describe('AbstractModel', () => {
 
   describe('search', () => {
     const terms = {
-      id: 1,
+      _id: 1,
       status: 'complete',
     };
     it('should call our abstract resource with the correct terms', () => {

@@ -12,7 +12,7 @@ let controller;
 let scope;
 let $rootScope;
 const testUser = {
-  id: 1,
+  _id: 1,
   firstName: 'test',
   lastName: 'user',
 };

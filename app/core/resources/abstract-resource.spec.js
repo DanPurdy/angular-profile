@@ -14,7 +14,7 @@ describe('AbstractResource', () => {
   const route = '/test';
   const id = '1';
   const item = {
-    id,
+    _id: id,
     test: 'test',
   };
   const collection = [item];

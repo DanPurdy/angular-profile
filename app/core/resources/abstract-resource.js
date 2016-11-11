@@ -27,7 +27,6 @@ class AbstractResource {
 
     this.Restangular = Restangular;
     this.route = route;
-    this.searchRoute = '/search';
   }
 
   /**
