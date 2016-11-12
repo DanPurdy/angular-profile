@@ -162,16 +162,6 @@ class AbstractModel {
       this.collection.splice(this.collection.indexOf(item), 1);
     });
   }
-
-  /**
-   * Call our resource search method
-   *
-   * @param {Object} terms - The terms to search by
-   * @returns {Promise} The search promise
-   */
-  search(terms) {
-    return this.resource.search(terms);
-  }
 }
 
 export default AbstractModel;

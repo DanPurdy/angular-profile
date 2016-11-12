@@ -138,7 +138,6 @@ describe('AbstractModel', () => {
   });
 
   // ==============================================================================
-  //
   //  save
   // ==============================================================================
 
@@ -199,24 +198,6 @@ describe('AbstractModel', () => {
         stub.should.have.been.calledWith(item._id);
         expect(stub).called;
       });
-    });
-  });
-
-  // ==============================================================================
-  //  search
-  // ==============================================================================
-
-  describe('search', () => {
-    const terms = {
-      _id: 1,
-      status: 'complete',
-    };
-    it('should call our abstract resource with the correct terms', () => {
-      const stub = sinon.stub(abstractResource, 'search', () => Promise.resolve(true));
-      abstractModel.search(terms);
-      expect(stub).to.have.been.calledOnce;
-      expect(stub).to.have.been.calledWithExactly(terms);
-      stub.restore();
     });
   });
 });
