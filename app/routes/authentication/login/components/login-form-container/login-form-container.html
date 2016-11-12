@@ -2,9 +2,13 @@
   <div class="panel-heading" ng-show="apLoginFormContainerVm.loggedOut">
     <p class="bg-success">You're now successfully logged out. You can log in again below.</p>
   </div>
-  <div class="panel-heading" ng-show="apLoginFormContainerVm.registeredUser.username">
-    <p class="bg-success">Thanks for registering, you can now sign in below</p>
+  <div class="panel-heading" ng-show="apLoginFormContainerVm.registeredUser">
+    <div class="bg-success">Thanks for registering, you can now sign in below</div>
   </div>
+  <div class="panel-heading" ng-show="apLoginFormContainerVm.hasError">
+    <div class="bg-danger">{{apLoginFormContainerVm.errorMessage}}</div>
+  </div>
+
   <div class="ap-splash">
     <div class="panel-heading">
       <h1 class="ap-splash__heading">I already have an account</h1>

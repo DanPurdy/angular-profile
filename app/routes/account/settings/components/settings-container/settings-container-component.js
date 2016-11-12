@@ -11,8 +11,8 @@
 import userDetailsFormModule
   from '../../../../../components/ap-user-details-form/ap-user-details-form-component';
 
-// import apLoadingData
-//   from '../../../../../components/ap-loading-data/ap-loading-data-component';
+import apLoadingData
+  from '../../../../../components/ap-loading-data/ap-loading-data-component';
 
 import SettingsContainerController from './settings-container-controller';
 
@@ -20,6 +20,7 @@ import template from './settings-container.html';
 
 const settingsContainerModule = angular.module('settingsContainerModule', [
   userDetailsFormModule,
+  apLoadingData,
 ])
   .component('settingsContainer', {
     template,

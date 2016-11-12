@@ -54,6 +54,7 @@ class LoginFormContainerController {
         this.FormService.onSuccess(this);
         this.$state.go('angularProfile.account.settings');
       }).catch(response => {
+        this.FormService.onFailure(this, response);
         form.$setPristine();
         if (response.status === 401) {
           // TODO check error

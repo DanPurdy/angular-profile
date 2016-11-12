@@ -33,9 +33,9 @@ class AccountController {
    * @returns {Object} The authentication service logout promise
    */
   logout() {
-    return this.AuthenticationService.logout()
+    Promise.resolve(this.AuthenticationService.logout())
       .then(() => {
-        this.$state.go('authentication.login.form');
+        this.$state.go('authentication.login.form', { loggedOut: true });
       })
       .catch(e => {
         // TODO show an error message to the user

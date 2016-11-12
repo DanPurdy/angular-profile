@@ -51,7 +51,7 @@ class ApRegisterFormContainerController {
       .then(response => {
         this.FormService.onSuccess(this);
         this.user = response;
-        this.$state.go('authentication.login.form', { registeredUser: this.user });
+        this.$state.go('authentication.login.form', { registeredUser: true });
       }).catch(e => {
         this.FormService.onFailure(this, e);
         self.isSubmitting = false; // eslint-disable-line no-param-reassign
