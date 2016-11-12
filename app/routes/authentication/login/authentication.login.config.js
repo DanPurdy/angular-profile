@@ -30,7 +30,7 @@ class AuthenticationLoginConfig {
     }).state('authentication.login.form', {
       url: '/login',
       template: `<ap-login-form-container
-          user="user"
+          registered-user="registeredUser"
           logged-out="loggedOut"
         ></ap-login-form-container>`,
       params: {
@@ -40,7 +40,7 @@ class AuthenticationLoginConfig {
       controller: ($stateParams, $scope) => {
         'ngInject';
 
-        $scope.user = $stateParams.registeredUser; // eslint-disable-line no-param-reassign
+        $scope.registeredUser = $stateParams.registeredUser; // eslint-disable-line no-param-reassign,max-len
         $scope.loggedOut = $stateParams.loggedOut; // eslint-disable-line no-param-reassign
       },
     });

@@ -40,61 +40,88 @@ describe('AbstractResource', () => {
     $httpBackend.verifyNoOutstandingRequest();
   });
 
-  it('should call GET resource with `id`', () => {
-    $httpBackend.whenGET(`${route}/${id}`).respond(item);
+  // ==============================================================================
+  //  get
+  // ==============================================================================
+  describe('get', () => {
+    it('should call GET resource with `id`', () => {
+      $httpBackend.whenGET(`${route}/${id}`).respond(item);
 
-    abstractResource.get(`${id}`)
-      .then(respond => {
+      abstractResource.get(`${id}`)
+        .then(respond => {
+          expect(Restangular.stripRestangular(respond)).to.deep.equal(item);
+        });
+
+      $httpBackend.expectGET(`${route}/${id}`);
+      $httpBackend.flush();
+    });
+  });
+
+  // ==============================================================================
+  //  getList
+  // ==============================================================================
+
+  describe('getList', () => {
+    it('should call GET LIST resource', () => {
+      $httpBackend.whenGET(`${route}`).respond(collection);
+
+      abstractResource.getList()
+        .then(respond => {
+          expect(Restangular.stripRestangular(respond)).to.deep.equal(collection);
+        });
+
+      $httpBackend.expectGET(`${route}`);
+      $httpBackend.flush();
+    });
+  });
+
+  // ==============================================================================
+  //  create
+  // ==============================================================================
+  describe('create', () => {
+    it('should call POST resource', () => {
+      $httpBackend.whenPOST(`${route}`, item).respond(item);
+
+      abstractResource.create(item).then(respond => {
         expect(Restangular.stripRestangular(respond)).to.deep.equal(item);
       });
 
-    $httpBackend.expectGET(`${route}/${id}`);
-    $httpBackend.flush();
+      $httpBackend.expectPOST(`${route}`);
+      $httpBackend.flush();
+    });
   });
 
-  it('should call GET LIST resource', () => {
-    $httpBackend.whenGET(`${route}`).respond(collection);
+  // ==============================================================================
+  //  update
+  // ==============================================================================
 
-    abstractResource.getList()
-      .then(respond => {
-        expect(Restangular.stripRestangular(respond)).to.deep.equal(collection);
+  describe('update', () => {
+    it('should call PUT resource', () => {
+      $httpBackend.whenPUT(`${route}/${id}`, item).respond(() => [200, item]);
+
+      abstractResource.update(restangularized).then(respond => {
+        expect(Restangular.stripRestangular(respond)).to.deep.equal(item);
       });
 
-    $httpBackend.expectGET(`${route}`);
-    $httpBackend.flush();
+      $httpBackend.expectPUT(`${route}/${id}`, item);
+      $httpBackend.flush();
+    });
   });
 
+  // ==============================================================================
+  //  delete
+  // ==============================================================================
 
-  it('should call POST resource', () => {
-    $httpBackend.whenPOST(`${route}`, item).respond(item);
+  describe('delete', () => {
+    it('should call DELETE resource', () => {
+      $httpBackend.whenDELETE(`${route}/${id}`).respond(() => [200, item]);
 
-    abstractResource.create(item).then(respond => {
-      expect(Restangular.stripRestangular(respond)).to.deep.equal(item);
+      abstractResource.delete(id).then(respond => {
+        expect(Restangular.stripRestangular(respond)).to.deep.equal(item);
+      });
+      $httpBackend.expectDELETE(`${route}/${id}`);
+      $httpBackend.flush();
     });
-
-    $httpBackend.expectPOST(`${route}`);
-    $httpBackend.flush();
-  });
-
-  it('should call PUT resource', () => {
-    $httpBackend.whenPUT(`${route}/${id}`, item).respond(() => [200, item]);
-
-    abstractResource.update(restangularized).then(respond => {
-      expect(Restangular.stripRestangular(respond)).to.deep.equal(item);
-    });
-
-    $httpBackend.expectPUT(`${route}/${id}`, item);
-    $httpBackend.flush();
-  });
-
-  it('should call DELETE resource', () => {
-    $httpBackend.whenDELETE(`${route}/${id}`).respond(() => [200, item]);
-
-    abstractResource.delete(id).then(respond => {
-      expect(Restangular.stripRestangular(respond)).to.deep.equal(item);
-    });
-    $httpBackend.expectDELETE(`${route}/${id}`);
-    $httpBackend.flush();
   });
 });
 

@@ -13,7 +13,10 @@ const apLoginFormContainerModule = angular.module('apLoginFormContainerModule', 
     template,
     controller: ApLoginFormContainerController,
     controllerAs: 'apLoginFormContainerVm',
-    bindings: {},
+    bindings: {
+      loggedOut: '<',
+      registeredUser: '<',
+    },
   },
 );
 
