@@ -29,8 +29,6 @@ class AccountController {
 
   /**
    * Logs the user out
-   *
-   * @returns {Object} The authentication service logout promise
    */
   logout() {
     Promise.resolve(this.AuthenticationService.logout())

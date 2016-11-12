@@ -4,8 +4,6 @@ options:
 files:
   include: 'app/**/*.scss'
   ignore:
-    - 'app/styles/overwrites/**/*.scss'
-    - 'app/styles/functions/**/*.scss'
     - 'node_modules/**/*.scss'
     - 'node_modules/**/*.sass'
 rules:
