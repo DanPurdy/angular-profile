@@ -52,14 +52,12 @@ class LoginFormContainerController {
     return this.AuthenticationService.login(this.credentials)
       .then(() => {
         this.FormService.onSuccess(this);
+        this.isSubmitting = false;
         this.$state.go('angularProfile.account.settings');
       }).catch(response => {
         this.FormService.onFailure(this, response);
+        this.isSubmitting = false;
         form.$setPristine();
-        if (response.status === 401) {
-          // TODO check error
-        }
-        this.FormService.onFailure(this, response);
       });
   }
 }

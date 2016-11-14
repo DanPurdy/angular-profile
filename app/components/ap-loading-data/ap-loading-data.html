@@ -1,9 +1,4 @@
-<div class="progress">
-  <div class="progress-bar progress-bar-striped active"
-    role="progressbar"
-    aria-valuenow="{{::apLoadingDataVm.progress}}"
-    aria-valuemin="0"
-    aria-valuemax="100"
-    style="width: {{::apLoadingDataVm.progress}}%">
-  </div>
+<div class="ap-loading-data">
+  <div class="ap-loading-data__spinner"></div>
+  <div class="ap-loading-data__text"><h2>{{apLoadingDataVm.displayText}}</h2></div>
 </div>

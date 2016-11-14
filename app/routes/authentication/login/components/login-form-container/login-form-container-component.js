@@ -16,6 +16,7 @@ const apLoginFormContainerModule = angular.module('apLoginFormContainerModule', 
     bindings: {
       loggedOut: '<',
       registeredUser: '<',
+      expired: '<',
     },
   },
 );

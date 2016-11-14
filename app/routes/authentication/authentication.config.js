@@ -5,6 +5,7 @@
 // ==============================================================================
 
 import template from './authentication.html';
+import { ACCESS_LEVELS } from '../../core/constants/constants';
 
 /**
  * AuthenticationConfig handles all our base state for user account pages
@@ -28,6 +29,9 @@ class AuthenticationConfig {
       abstract: true,
       url: '',
       template,
+      data: {
+        access: ACCESS_LEVELS.public,
+      },
     });
   }
 }

@@ -70,8 +70,6 @@ const angularProfile = angular.module('angularProfile', [
   coreServicesModule,
   authentication,
   errorRoutes,
-  // ApContainerModule,
-  // apLoginModule,
   userAccount,
 ]);
 

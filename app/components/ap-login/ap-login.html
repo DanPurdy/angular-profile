@@ -7,7 +7,8 @@
     form: loginForm,
     credentials: ApLoginVm.credentials,
   })"
-  novalidate>
+  novalidate
+>
   <div class="form-group form-group-lg required">
     <label for="username" class="control-label sr-only">Username</label>
     <div class="input-group">
@@ -17,11 +18,14 @@
         name="username"
         ng-model="ApLoginVm.credentials.username"
         placeholder="Username"
-        required>
-<!-- TODO NG MESSAGES !!! -->
+        required
+      >
       <span class="input-group-addon">
         <span class="fa fa-user"></span>
       </span>
+    </div>
+    <div ng-messages="loginForm.username.$error" role="alert">
+      <div class="bg-danger" ng-message="required" ng-show="loginForm.$submitted || loginForm.username.$dirty">You forgot to enter your username</div>
     </div>
   </div>
   <div class="form-group form-group-lg required">
@@ -33,10 +37,14 @@
         name="password"
         ng-model="ApLoginVm.credentials.password"
         placeholder="Password"
-        required>
+        required
+      >
       <span class="input-group-addon">
         <span class="fa fa-lock"></span>
       </span>
+    </div>
+    <div ng-messages="loginForm.password.$error" role="alert">
+      <div class="bg-danger" ng-message="required" ng-show="loginForm.$submitted || loginForm.password.$dirty">You forgot to enter your password</div>
     </div>
   </div>
   <button class="btn btn-default btn-lg btn-block text-center" type="submit">Log in to my account</button>

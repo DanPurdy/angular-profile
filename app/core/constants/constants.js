@@ -19,8 +19,8 @@ export const USER_PROFILE_STATUSES = Object.freeze({ ENABLED: 'enabled', DISABLE
 // ==============================================================================
 
 export const USER_ROLES = Object.freeze({
-  USER: 'ROLE_USER',
-  ADMIN: 'ROLE_ADMIN',
+  USER: 'User',
+  ADMIN: 'Admin',
 });
 
 export const ACCESS_LEVELS = Object.freeze({

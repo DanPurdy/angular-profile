@@ -380,23 +380,50 @@ fieldset {
 }
 
 // =============================================================================
-//  Bootstrap - Forms
+//  Bootstrap - error/warning messages
 // =============================================================================
 
-.form,
-.form-horizontal {
-  .bg-danger {
-    padding: 1rem 1rem 1rem 2rem;
-    border-radius: 3px;
-    margin-top: 10px;
-    border: 1px solid palette(ap, ap-red);
-    color: palette(ap, ap-red, dark);
+.bg-danger {
+  padding: 1rem 1rem 1rem 2rem;
+  border-radius: 3px;
+  margin-top: 10px;
+  border: 1px solid palette(ap, ap-red);
+  color: palette(ap, ap-red, dark);
 
-    &::before {
-      font-family: FontAwesome;
-      content: '\f071';
-      margin-left: -1rem;
-      margin-right: 0.5rem;
-    }
+  &::before {
+    font-family: FontAwesome;
+    content: '\f071';
+    margin-left: -1rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.bg-success {
+  padding: 1rem 1rem 1rem 2rem;
+  border-radius: 3px;
+  margin-top: 10px;
+  border: 1px solid palette(ap, ap-green);
+  color: palette(ap, ap-green, dark);
+
+  &::before {
+    font-family: FontAwesome;
+    content: '\f00c';
+    margin-left: -1rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.bg-warning {
+  padding: 1rem 1rem 1rem 2rem;
+  border-radius: 3px;
+  margin-top: 10px;
+  border: 1px solid palette(ap, ap-orange);
+  color: palette(ap, ap-orange, dark);
+
+  &::before {
+    font-family: FontAwesome;
+    content: '\f06a';
+    margin-left: -1rem;
+    margin-right: 0.5rem;
   }
 }

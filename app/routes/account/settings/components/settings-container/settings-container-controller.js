@@ -19,15 +19,11 @@ class SettingsContainerController {
    * @param {Object} AuthenticationService - Our authentication service
    * @param {Object} UsersModel - Our users model
    * @param {Object} UserService - Our users service
-   * @param {Object} $state - Our ui router state provider
-   * @param {Object} $scope - The current scope
    */
   constructor(
     AuthenticationService,
     UsersModel,
     UserService,
-    $state,
-    $scope,
   ) {
     // ng-annotate injection
 
@@ -36,8 +32,6 @@ class SettingsContainerController {
     this.AuthenticationService = AuthenticationService;
     this.UsersModel = UsersModel;
     this.UserService = UserService;
-    this.$state = $state;
-    this.$scope = $scope;
     this.isLoading = true;
     this.user = null;
     this.result = null;
@@ -105,6 +99,8 @@ class SettingsContainerController {
     }
     this.isSubmitting = true;
     this.result = null;
+    this.hasUpdated = false;
+    this.hasError = false;
 
     return this.UsersModel.save(this.compareUsers(user))
       .then(response => {
@@ -112,12 +108,12 @@ class SettingsContainerController {
         this.AuthenticationService.updateCurrentUser(user);
         this.user = response;
         this.dummyUser = this.setupDummyUser();
-        self.isSubmitting = false; // eslint-disable-line no-param-reassign
+        this.isSubmitting = false;
         form.$setPristine();
       }).catch(e => {
         this.UserService.onUpdateFailure(this, e);
         this.dummyUser = this.setupDummyUser(); // reset our user to the old state
-        self.isSubmitting = false; // eslint-disable-line no-param-reassign
+        this.isSubmitting = false;
         form.$setPristine();
         console.error('update user', e); // eslint-disable-line no-console,angular/log
       });

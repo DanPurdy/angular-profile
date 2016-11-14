@@ -45,6 +45,7 @@ class UserService {
   onUpdateSuccess(self) {
     /* eslint-disable no-param-reassign */
     self.result = 'success';
+    self.hasUpdated = true;
     self.hasError = false;
     /* eslint-enable */
   }
@@ -58,20 +59,18 @@ class UserService {
   onUpdateFailure(self, response) {
     /* eslint-disable no-param-reassign */
     self.result = 'error';
+    self.hasUpdated = false;
     self.hasError = true;
 
     switch (response.status) {
       case 400:
         self.errorMessage = response.data.message;
         break;
-      case 403:
-        self.errorMessage = 'The password you supplied was incorrect';
+      case 401 || 403:
+        self.errorMessage = 'You\re not authorised to update this user';
         break;
       case 404:
         self.errorMessage = 'The user ID provided could not be found';
-        break;
-      case 422:
-        self.errorMessage = 'Sorry! Your details were not updated.';
         break;
       default:
         self.errorMessage = 'Something went wrong. Please contact the site administrator.';

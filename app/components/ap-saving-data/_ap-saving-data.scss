@@ -1,20 +1,26 @@
 // =============================================================================
 //
-//  app/components/ap-loading-data/_ap-loading-data.scss
+//  app/components/ap-saving-data/_ap-saving-data.scss
 //
 // =============================================================================
 
-.ap-loading-data {
+.ap-saving-data {
   display: flex;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: row;
 
   &__spinner {
-    width: 80px;
-    height: 80px;
-    margin: 1.5rem 0 0;
-    border: 5px dashed palette(ap, ap-blue);
+    width: 25px;
+    height: 25px;
+    margin: 0.25rem 0 0;
+    border: 3px dashed palette(ap, ap-blue);
     animation: spinner 1.2s infinite ease-in-out;
+  }
+
+  &__text {
+    font-size: 1rem;
+    margin-left: 1rem;
+    padding: 0.4rem 0;
+    color: palette(ap, ap-blue);
   }
 }
 

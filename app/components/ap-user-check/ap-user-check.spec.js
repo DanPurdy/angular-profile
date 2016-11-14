@@ -58,7 +58,7 @@ describe('apUserCheck', () => {
     });
   });
 
-  describe('$validator emailValid', () => {
+  describe('$validator emailAvailable', () => {
     beforeEach(() => {
       sandbox = sinon.sandbox.create();
     });
