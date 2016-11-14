@@ -58,10 +58,12 @@
         ng-model="apUserRegisterVm.registration.email"
         placeholder="name@example.com"
         ap-user-check="email"
+        ap-email-valid
         ng-model-options="{ updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
         required>
       <div ng-messages="userRegForm.email.$error" role="alert">
-        <div class="bg-danger" ng-message="emailValid" ng-show="userRegForm.$submitted || userRegForm.email.$dirty">Email is already in use</div>
+        <div class="bg-danger" ng-message="emailValid" ng-show="userRegForm.$submitted || userRegForm.email.$dirty">Please double check your email address</div>
+        <div class="bg-danger" ng-message="emailAvailable" ng-show="userRegForm.$submitted || userRegForm.email.$dirty">Email is already in use</div>
         <div class="bg-danger" ng-message="required" ng-show="userRegForm.$submitted || userRegForm.userType.$dirty">You must provide your email address</div>
       </div>
     </div>
@@ -106,7 +108,7 @@
   </fieldset>
   <div ng-show="userRegForm.$submitted">
     <div ng-messages="userRegForm.$error" role="alert">
-      <div class="bg-danger" ng-message="required">Please ensure that all the fields marked above are completed</div>
+      <div class="bg-danger" ng-message="required">Please ensure that all the fields marked above are valid</div>
       <div class="bg-danger" ng-message="userNameValid">Your chosen username is unavailable</div>
       <div class="bg-danger" ng-message="passLength">Password must be at least 8 characters long</div>
       <div class="bg-danger" ng-message="passFormat">Password is invalid (Must contain uppercase and lowercase letters and also a number)</div>

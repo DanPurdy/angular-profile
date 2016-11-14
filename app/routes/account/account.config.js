@@ -6,6 +6,8 @@
 
 import template from './account.html';
 import AccountController from './account.controller';
+import { ACCESS_LEVELS } from '../../core/constants/constants';
+
 
 /**
  * AccountConfig handles all our base state for user account pages
@@ -31,6 +33,9 @@ class AccountConfig {
       template,
       controllerAs: 'apAccountVm',
       controller: AccountController,
+      data: {
+        access: ACCESS_LEVELS.user,
+      },
     });
   }
 }

@@ -12,6 +12,9 @@ const apLoadingDataModule = angular.module('apLoadingDataModule', [])
     template,
     controller: ApLoadingDataController,
     controllerAs: 'apLoadingDataVm',
+    bindings: {
+      displayText: '<',
+    },
   },
 );
 

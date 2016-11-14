@@ -1,14 +1,20 @@
 <section>
   <div class="panel-body" ng-if="settingsContainerVm.isLoading">
-    <ap-loading-data></ap-loading-data>
+    <ap-loading-data display-text="'Loading Profile'"></ap-loading-data>
   </div>
   <div class="panel-body" ng-if="!settingsContainerVm.isLoading">
+    <div class="panel-heading" ng-show="settingsContainerVm.hasError">
+      <div class="bg-danger">{{settingsContainerVm.errorMessage}}</div>
+    </div>
+    <div class="panel-heading" ng-show="settingsContainerVm.hasUpdated">
+      <div class="bg-success">Your profile was updated successfully</div>
+    </div>
     <ap-user-details-form
       user="settingsContainerVm.dummyUser"
-      result="settingsContainerVm.result"
       is-submitting="settingsContainerVm.isSubmitting"
       on-save="settingsContainerVm.onSave(valid, form, user)"
     >
     </ap-user-details-form>
+    <ap-saving-data display-text="'Saving details'" ng-show="settingsContainerVm.isSubmitting"></ap-saving-data>
   </div>
 </section>

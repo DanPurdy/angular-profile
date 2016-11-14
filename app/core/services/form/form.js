@@ -45,7 +45,7 @@ class FormService {
     if (response.status === 400) {
       self.errorMessage = response.data.message;
     } else if (response.status === 401 || response.status === 403) {
-      self.errorMessage = 'Wrong email or password.';
+      self.errorMessage = 'Incorrect username or password.';
     } else if (response.status === 404) {
       self.errorMessage = 'The requested record could not be found.';
     } else if (response.status === 409 && response.config.method === 'PUT') {

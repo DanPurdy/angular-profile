@@ -57,10 +57,12 @@
         ng-model="apUserDetailsFormVm.user.email"
         placeholder="name@example.com"
         ap-user-check="email"
+        ap-email-valid
         ng-model-options="{ allowInvalid: false, updateOn: 'default blur', debounce: { 'default': 500, 'blur': 0 } }"
         required>
       <div ng-messages="userDetailsForm.email.$error" role="alert">
-        <div class="bg-danger" ng-message="emailValid" ng-show="userDetailsForm.$submitted || userDetailsForm.email.$dirty">Email is already in use</div>
+        <div class="bg-danger" ng-message="emailValid" ng-show="userDetailsForm.$submitted || userDetailsForm.email.$dirty">Please check your email address</div>
+        <div class="bg-danger" ng-message="emailAvailable" ng-show="userDetailsForm.$submitted || userDetailsForm.email.$dirty">Email is already in use</div>
         <div class="bg-danger" ng-message="required" ng-show="userDetailsForm.$submitted || userDetailsForm.userType.$dirty">You must provide your email address</div>
       </div>
     </div>
@@ -111,5 +113,5 @@
       <div class="bg-danger" ng-message="passMatch">Please double check that your passwords match</div>
     </div>
   </div>
-  <button class="btn btn-primary" ng-disabled="!userDetailsForm.$dirty || !userDetailsForm.$valid" type="submit" name="button">Update your Profile</button>
+  <button class="btn btn-primary" ng-show="!apUserDetailsFormVm.isSubmitting" ng-disabled="!userDetailsForm.$dirty || !userDetailsForm.$valid" type="submit" name="button">Update your Profile</button>
 </form>

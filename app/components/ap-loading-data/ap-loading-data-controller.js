@@ -18,8 +18,6 @@ class ApLoadingDataController {
    */
   constructor() {
     'ngInject';
-
-    this.progress = 100;
   }
 }
 

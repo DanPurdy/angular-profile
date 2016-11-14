@@ -29,16 +29,6 @@ class AccountSettingsConfig {
     $stateProvider.state('angularProfile.account.settings', {
       url: '/settings',
       template,
-    })
-    .state('angularProfile.account.child', {
-      url: '/settings/child/:userId',
-      template,
-      controllerAs: 'childSettingsVm',
-      controller: ($scope, $stateParams) => {
-        'ngInject';
-
-        $scope.userId = parseInt($stateParams.userId, 10) || null; // eslint-disable-line no-param-reassign,max-len
-      },
     });
   }
 }

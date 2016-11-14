@@ -25,7 +25,7 @@ function UserCheck(UserService, $q) {
       const ctrl = ngModel;
       if (!ctrl || !attrs.apUserCheck) return;
 
-      ctrl.$asyncValidators.emailValid = (modelVal, viewVal) => {
+      ctrl.$asyncValidators.emailAvailable = (modelVal, viewVal) => {
         const deferred = $q.defer();
 
         if (!modelVal || !viewVal) {

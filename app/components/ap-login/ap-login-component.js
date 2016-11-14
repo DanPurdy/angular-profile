@@ -15,8 +15,6 @@ const ApLoginModule = angular.module('apLoginModule', [])
     controllerAs: 'ApLoginVm',
     transclude: true,
     bindings: {
-      isSubmitting: '<',
-      result: '<',
       onLogin: '&',
     },
   },

@@ -5,5 +5,29 @@
 // =============================================================================
 
 .ap-loading-data {
-  // TODO
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  &__spinner {
+    width: 80px;
+    height: 80px;
+    margin: 1.5rem 0 0;
+    border: 5px dashed palette(ap, ap-blue);
+    animation: spinner 1.2s infinite ease-in-out;
+  }
+}
+
+@keyframes spinner {
+  0% {
+    transform: perspective(120px) rotateX(0deg) rotateY(0deg);
+  }
+
+  50% {
+    transform: perspective(120px) rotateX(-180.1deg) rotateY(0deg);
+  }
+
+  100% {
+    transform: perspective(120px) rotateX(-180deg) rotateY(-179.9deg);
+  }
 }
