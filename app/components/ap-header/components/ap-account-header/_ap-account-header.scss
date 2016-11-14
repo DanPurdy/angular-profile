@@ -12,23 +12,14 @@
     align-items: center;
   }
 
-  &__item {
-    &:first-of-type {
-      margin-right: 1rem;
-    }
-  }
-
-  &__user {
-    font-family: 'Times', 'Times New Roman', serif;
-    font-size: 1.25rem;
-    font-style: italic;
-    color: palette(ap, ap-blue);
-    margin-bottom: 0.5rem;
-  }
-
   &__logout {
-    font-family: 'Arial', serif;
-    font-size: 1rem;
-    font-style: normal;
+    &-anchor {
+      font-family: 'Arial', serif;
+      font-size: 1.25rem;
+      font-style: normal;
+      color: palette(ap, ap-blue);
+      margin: 0.5rem;
+      cursor: pointer;
+    }
   }
 }

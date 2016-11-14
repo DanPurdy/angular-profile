@@ -1,33 +1,16 @@
 <div class="panel">
-  <div class="panel-heading" ng-show="apLoginFormContainerVm.loggedOut">
-    <p class="bg-success">You're now successfully logged out. You can log in again below.</p>
+  <div class="panel-heading">
+    <div class="bg-success" ng-show="apLoginFormContainerVm.loggedOut">You're now successfully logged out. You can log in again below.</div>
+    <div class="bg-success" ng-show="apLoginFormContainerVm.registeredUser">Thanks for registering, you can now sign in below</div>
+    <div class="bg-danger" ng-show="apLoginFormContainerVm.expired">Your session expired. Please login again</div>
+    <div class="bg-danger" ng-show="apLoginFormContainerVm.hasError">{{apLoginFormContainerVm.errorMessage}}</div>
   </div>
-  <div class="panel-heading" ng-show="apLoginFormContainerVm.registeredUser">
-    <div class="bg-success">Thanks for registering, you can now sign in below</div>
-  </div>
-  <div class="panel-heading" ng-show="apLoginFormContainerVm.hasError">
-    <div class="bg-danger">{{apLoginFormContainerVm.errorMessage}}</div>
-  </div>
-
-  <div class="ap-splash">
-    <div class="panel-heading">
-      <h1 class="ap-splash__heading">I already have an account</h1>
-    </div>
-    <div class="panel-body">
-      <ap-login
-        result="apLoginFormContainerVm.result"
-        on-login="apLoginFormContainerVm.login(valid, form, credentials)"
-        is-submitting="apLoginFormContainerVm.isSubmitting"
-      >
-    </ap-login>
-    </div>
-    <div class="panel-heading">
-      <h1 class="ap-splash__heading">Don't have an account yet?</h1>
-    </div>
-    <div class="panel-body">
-      <a class="btn btn-primary btn-lg btn-block" ui-sref="authentication.register.form" href="/sign-up">
-        Sign up for an account
-      </a>
-    </div>
+  <div class="panel-body">
+    <ap-loading-data display-text="'Logging In'" ng-show="apLoginFormContainerVm.isSubmitting"></ap-loading-data>
+    <ap-login on-login="apLoginFormContainerVm.login(valid, form, credentials)" ng-show="!apLoginFormContainerVm.isSubmitting"></ap-login>
+    <hr>
+    <a class="btn btn-primary btn-lg btn-block" ui-sref="authentication.register.form" href="/sign-up">
+      Sign up for an account
+    </a>
   </div>
 </div>
