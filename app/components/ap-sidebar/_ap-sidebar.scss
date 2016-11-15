@@ -10,6 +10,18 @@
   border: 1px solid palette(ap, ap-grey, xx-light);
   width: 235px;
 
+  @media (max-width: 960px) {
+    width: 180px;
+  }
+
+  @media (max-width: 700px) {
+    width: 55px;
+  }
+
+  @media (max-width: 580px) {
+    width: 100%;
+  }
+
   &__nav {
     list-style: none;
     padding: 0;
@@ -81,5 +93,14 @@
 
   &__nav-text {
     overflow: hidden;
+
+    @media (max-width: 700px) {
+      display: none;
+    }
+
+    @media (max-width: 580px) {
+      display: inline-block;
+      vertical-align: middle;
+    }
   }
 }
