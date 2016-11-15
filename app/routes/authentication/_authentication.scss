@@ -14,5 +14,14 @@
     width: 60%;
     max-width: 1024px;
     padding: 2rem 0;
+
+    @media (max-width: 960px) {
+      width: 80%;
+    }
+
+    @media (max-width: 600px) {
+      width: 100%;
+      padding: 2rem 1rem;
+    }
   }
 }

@@ -21,9 +21,7 @@ module.exports = (config) => {
       './app/bootstrap.js': ['babel', 'webpack', 'sourcemap'],
       './app/test.js': ['babel', 'webpack'],
     },
-
     webpack: webpackConfig,
-
     webpackMiddleware: {
       noInfo: true,
     },

@@ -33,6 +33,12 @@ export default angular.module('angularProfile')
       data: {
         access: ACCESS_LEVELS.public,
       },
+    }).state('angularProfile.root', {
+      url: '/',
+      template: 'Hello',
+      data: {
+        access: ACCESS_LEVELS.public,
+      },
     });
     $urlRouterProvider.otherwise('404');
 

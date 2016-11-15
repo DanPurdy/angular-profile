@@ -38,6 +38,10 @@ export default angular.module('angularProfile')
     // Watch for any state changes and handle route authentication etc
     const loadStateStart = $rootScope // eslint-disable-line no-unused-vars
       .$on('$stateChangeStart', (event, toState) => { // eslint-disable-line consistent-return
+        if (toState.name === 'angularProfile.root') {
+          event.preventDefault();
+          $state.go('authentication.login.form');
+        }
         if (!('data' in toState) || !('access' in toState.data)) {
           event.preventDefault();
           $state.go('403');
